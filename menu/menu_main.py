@@ -1,14 +1,16 @@
-from search_playlist import playlist
+from search_playlist.playlist import menu_playlist
 
 
 def head():
+    """ MAIN MENU
+    """
     while True:
         print("--- PLAYLIST - FY ----")
         print("1. Search and modify songs from your playlists")
         print("2. Top Artists")
-        option=input("Select an option (1-2)")
+        option=int(input("Select an option (1-2)"))
         if option==1:
-            playlist()
+            menu_playlist()
             
         elif option==2:
             pass
