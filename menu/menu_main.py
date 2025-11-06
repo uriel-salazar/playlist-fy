@@ -1,4 +1,4 @@
-from search_playlist.playlist import menu_playlist
+from playlist_control.playlist  import menu_playlist
 
 
 def head():
