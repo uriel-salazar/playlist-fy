@@ -41,9 +41,6 @@ def available_playlist():
     sp=get_scopes() #spotify client object 
     playlists = sp.current_user_playlists()
 
-    for index,playlist in enumerate(playlists["items"],start=1):
-        print(f'-{index} {playlist["name"]}')
-                 
     return sp,playlists
             
     
@@ -73,9 +70,11 @@ def dict_playlist(scope,collections):
         tracks = [
             {
                 "track_name": item["track"]["name"],
-                "artist": item["track"]["artists"][0]["name"]  # first artist
+                "artist": item["track"]["artists"][0]["name"],
+                "uri":item["track"]["uri"]
+                
             }
-            for item in results["items"]
+            for item in results["items"] if item.get("track")
         ]
 
         playlist_data.append({
@@ -83,7 +82,9 @@ def dict_playlist(scope,collections):
             "id": playlist_id,
             "tracks": tracks
         })
-        return playlist_data
+    return playlist_data
+    
+    
     
 
 
