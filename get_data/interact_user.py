@@ -1,4 +1,4 @@
-
+from validate.verify_text import verify_number
 def search_playlist(data):
     """
     Ask to user their playlist to work on 
@@ -23,7 +23,8 @@ def search_playlist(data):
             continue 
 
         choice = int(choice)
-        if 1 <= choice <= len(data):
+        #If the output equal less or beyond the available option,applies this verification.
+        if 1 <= choice <= len(data): 
             break
         else:
             print(" Number out of range. Try again.")

@@ -1,5 +1,5 @@
 from playlist_control.playlist  import menu_playlist
-
+from validate.verify_text import verify_number
 
 def head():
     """ MAIN MENU
@@ -8,7 +8,7 @@ def head():
         print("--- PLAYLIST - FY ----")
         print("1. Search and modify songs from your playlists")
         print("2. Top Artists")
-        option=int(input("Select an option (1-2) :"))
+        option=verify_number("Select an option (1-2) :")
         if option==1:
             menu_playlist()
             
