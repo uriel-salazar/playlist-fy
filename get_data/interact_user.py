@@ -1,20 +1,12 @@
 
 def search_playlist(data):
-<<<<<<< HEAD
     """
     Ask to user their playlist to work on 
-=======
-    """ Ask to user their playlist to work on 
->>>>>>> a8cf7cce4ec1beed722a7e5ad5a8df41a70c58a7
 
     Args:
         data (dict) : Dictionary from RAW AI response
 
     Returns:
-<<<<<<< HEAD
-=======
-      - selected :()
->>>>>>> a8cf7cce4ec1beed722a7e5ad5a8df41a70c58a7
     """
     for index, playlist in enumerate(data, start=1):
         print(f"{index}. {playlist['playlist_name']}")
@@ -42,7 +34,6 @@ def search_playlist(data):
 
 def show_songs(playlist):
     tracks = playlist["tracks"]
-<<<<<<< HEAD
     playlist_name=playlist["playlist_name"]
     batch_size = 5 
     start = 0
@@ -51,10 +42,10 @@ def show_songs(playlist):
     while start < len(tracks):
         end = start + batch_size
         for item in tracks[start:end]:
-            track_name = item["track_name"]
+            track_name = item["track_name"] 
             artist_name = item["artist"]
-            uri = item["uri"]
-        
+            uri = item["uri"] 
+
             print(f'Artist: {artist_name}, Name: {track_name}')
             
             playlist_user[track_name]={
@@ -68,41 +59,18 @@ def show_songs(playlist):
         if start >= len(tracks):
             print("No more songs.")
             break
-
-
-        more = input("Show more songs? (y/n): ").lower()
-
-        if more != "y":
-            question=input("Are you going to use this playlist? :")
-            if question=="yes":
-                return playlist_user
-        else:
-            return
-        
-def check(info):
-    print(info)
-=======
-    batch_size = 5 
-    start = 0
-
-    while start < len(tracks):
-        end = start + batch_size
-        for item in tracks[start:end]: 
-            track_name = item["track_name"]
-            artist_name = item["artist"]
-            uri = item["uri"]
-            print(f'Artist: {artist_name}, Name: {track_name}')
-        
-        start += batch_size  
-        
-        if start >= len(tracks):
-            print("No more songs.")
-            break
-        
         more = input("Show more songs? (y/n): ").lower()
         if more != "y":
             break
->>>>>>> a8cf7cce4ec1beed722a7e5ad5a8df41a70c58a7
+        
+    question = input("Are you going to use this playlist? (yes/no): ").lower()
+    if question == "yes":
+        return playlist_user, question
+    else:
+        return playlist_user, None
+            
+def check(info,question):
+    print(info) #trying if the dictionary was returned 
 
     
         
