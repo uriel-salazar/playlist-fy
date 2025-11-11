@@ -49,8 +49,8 @@ def display_songs(playlist):
         uri_spotify=i["uri"]
         ###
         playlist_user[name_song]={
-                "artist":name_artist,
-                "uri":uri_spotify
+        "Artist":name_artist,
+        "Uri":uri_spotify
             }
     while start < len(tracks):
         end = start + batch_size
@@ -60,8 +60,7 @@ def display_songs(playlist):
             uri = item["uri"] 
 
             print(f'Artist: {artist_name}, Name: {track_name}')
-
-                 
+             
         start += batch_size
 
         if start >= len(tracks):
@@ -79,7 +78,10 @@ def display_songs(playlist):
         return playlist_user, None
     
             
-def check(info):
-    print(info)
+def check(playlist):
+    table_playlists=pd.DataFrame.from_dict(playlist,orient="index")
+    table_playlists = table_playlists.reset_index().rename(columns={'index': 'Song Name'})
+    print(table_playlists)
+    
     
    
