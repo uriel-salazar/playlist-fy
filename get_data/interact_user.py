@@ -36,6 +36,14 @@ def print_playlist(data):
     
 
 def display_songs(playlist):
+    """ Displays first 5 songs of playlist's user selected.
+    Creates a playlist's dict with information such as name of the track,artist and spotify uri.
+    Args:
+        playlist (_type_): _description_
+
+    Returns:
+        playlist_user(dict) : User's playlist dict 
+    """
     tracks = playlist["tracks"]
     playlist_name=playlist["playlist_name"]
     batch_size = 5 
@@ -73,6 +81,7 @@ def display_songs(playlist):
     
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
+        print(f" You selected {playlist_name} as your playlist !")
         return playlist_user, question
     else:
         return playlist_user, None
