@@ -1,3 +1,6 @@
+import pandas as pd 
+import os 
+
 def print_playlist(data):
     """
     Ask to user their playlist to work on 
@@ -47,7 +50,6 @@ def display_songs(playlist):
             uri = item["uri"] 
 
             print(f'Artist: {artist_name}, Name: {track_name}')
-            
             playlist_user[track_name]={
                 "artist":artist_name,
                 "uri":uri
@@ -62,7 +64,7 @@ def display_songs(playlist):
         more = input("Show more songs? (y/n): ").lower()
         if more != "y":
             break
-        
+    
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
         return playlist_user, question
@@ -70,9 +72,7 @@ def display_songs(playlist):
         return playlist_user, None
     
             
-def check(info,question):
-    print(info) #trying if the dictionary was returned 
-
+def check(info):
+    print(info)
     
-        
-
+   
