@@ -7,7 +7,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-def get_scopes():
+def get_spotify ():
     """ Loads authorization variables,creates lists with scopes to read
 
     Returns:
@@ -31,14 +31,14 @@ def get_scopes():
         ))
     
     
-def available_playlist():
+def current_playlist():
     """  Displays the current user's available Spotify playlists.
 
     Returns:
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
-    sp=get_scopes() #spotify client object 
+    sp=get_spotify () #spotify client object 
     playlists = sp.current_user_playlists()
 
     return sp,playlists
