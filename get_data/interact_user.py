@@ -1,4 +1,4 @@
-import pandas as pd 
+
 import os 
 
 def print_playlist(data):
@@ -77,11 +77,6 @@ def display_songs(playlist):
     else:
         return playlist_user, None
     
-            
-def check(playlist):
-    table_playlists=pd.DataFrame.from_dict(playlist,orient="index")
-    table_playlists = table_playlists.reset_index().rename(columns={'index': 'Song Name'})
-    print(table_playlists)
-    
+        
     
    

@@ -1,6 +1,7 @@
 from get_data.call import get_spotify,current_playlist,dict_playlist
-from get_data.interact_user import display_songs,check,print_playlist
+from get_data.interact_user import display_songs,print_playlist
 
+from saving.save_playlists import data_playlist
 def caller_playlist():
     #loads client id and secret,converts scopes into lists
     get_spotify() 
@@ -12,10 +13,10 @@ def caller_playlist():
             selected=print_playlist(playlist_data)
             playlist_user,question=display_songs(selected)
             if question=="yes":
-                check(playlist_user)
+                data_playlist(playlist_user)
                 break
             else:
-                again=input("Search another playlist? : :")
+                again=input("Search another playlist? :")
                 if again!="yes":
                     break
                     
