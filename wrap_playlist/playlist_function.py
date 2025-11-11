@@ -13,7 +13,7 @@ def caller_playlist():
             selected=print_playlist(playlist_data)
             playlist_user,question=display_songs(selected)
             if question=="yes":
-                data_playlist(playlist_user)
+                table_playlist=data_playlist(playlist_user)
                 break
             else:
                 again=input("Search another playlist? :")
