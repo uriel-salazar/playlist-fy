@@ -42,6 +42,16 @@ def display_songs(playlist):
     start = 0
     playlist_user={}
     print(f" --- Playlist : {playlist_name}🎵 ---")
+    
+    for i in tracks:
+        name_song=i["track_name"]
+        name_artist=i["artist"]
+        uri_spotify=i["uri"]
+        ###
+        playlist_user[name_song]={
+                "artist":name_artist,
+                "uri":uri_spotify
+            }
     while start < len(tracks):
         end = start + batch_size
         for item in tracks[start:end]:
@@ -50,10 +60,7 @@ def display_songs(playlist):
             uri = item["uri"] 
 
             print(f'Artist: {artist_name}, Name: {track_name}')
-            playlist_user[track_name]={
-                "artist":artist_name,
-                "uri":uri
-            }
+
                  
         start += batch_size
 
