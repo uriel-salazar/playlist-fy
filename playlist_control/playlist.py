@@ -1,4 +1,4 @@
-from wrap_playlist.playlist_function import call_playlist
+from wrap_playlist.playlist_function import caller_playlist
 from validate.verify_text import verify_number
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
@@ -10,7 +10,7 @@ def menu_playlist():
         print("3. Delete a playlist ")
         option=verify_number("Select an option :")
         if option==1:
-            call_playlist()
+            caller_playlist()
             playlist_info=True
                  
         elif option==2:

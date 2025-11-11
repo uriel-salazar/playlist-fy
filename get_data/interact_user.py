@@ -1,5 +1,4 @@
-from validate.verify_text import verify_number
-def search_playlist(data):
+def print_playlist(data):
     """
     Ask to user their playlist to work on 
 
@@ -33,7 +32,7 @@ def search_playlist(data):
     return selected
     
 
-def show_songs(playlist):
+def display_songs(playlist):
     tracks = playlist["tracks"]
     playlist_name=playlist["playlist_name"]
     batch_size = 5 
@@ -53,22 +52,23 @@ def show_songs(playlist):
                 "artist":artist_name,
                 "uri":uri
             }
-            
-              
+                 
         start += batch_size
 
         if start >= len(tracks):
             print("No more songs.")
             break
+        
         more = input("Show more songs? (y/n): ").lower()
         if more != "y":
             break
         
-    question = input("Are you going to use this playlist? (yes/no): ").lower()
+    question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
         return playlist_user, question
     else:
         return playlist_user, None
+    
             
 def check(info,question):
     print(info) #trying if the dictionary was returned 
