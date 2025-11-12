@@ -33,6 +33,45 @@ def print_playlist(data):
 
     selected = data[choice - 1]
     return selected
+
+
+def extract_dict(playlist):
+    tracks=playlist["tracks"]
+    playlist_name=playlist["playlist_name"]
+    playlist_user={}
+    for i in tracks:
+        name_song=i["track_name"]
+        name_artist=i["artist"]
+        uri_spotify=i["uri"]
+        
+        ###
+        playlist_user[name_song]={
+        "Artist":name_artist,
+        "Uri":uri_spotify
+            }
+    return playlist_user,playlist_name,tracks,
+
+
+def overview_logic(playlist,songs):
+    batch_size=5
+    start=0
+    end = start + batch_size
+    for item in songs[start:end]:
+        track_name = item["track_name"] 
+        artist_name = item["artist"]
+        uri = item["uri"]
+        start += batch_size
+    return start,track_name,artist_name,uri,end
+
+def overview_show(begin,name_song,artist,songs):
+    print(f'Artist: {artist}, Name: {name_song}')
+    while begin < len(songs):
+        if begin >= songs:
+            print("No more songs.")
+            break
+        
+    
+    
     
 
 def display_songs(playlist):
@@ -55,11 +94,13 @@ def display_songs(playlist):
         name_song=i["track_name"]
         name_artist=i["artist"]
         uri_spotify=i["uri"]
-        ###
+
         playlist_user[name_song]={
         "Artist":name_artist,
         "Uri":uri_spotify
             }
+    
+    
     while start < len(tracks):
         end = start + batch_size
         for item in tracks[start:end]:
@@ -78,7 +119,7 @@ def display_songs(playlist):
         more = input("Show more songs? (y/n): ").lower()
         if more != "y":
             break
-    
+    print(playlist_user)
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
         print(f" You selected {playlist_name} as your playlist !")
@@ -87,5 +128,4 @@ def display_songs(playlist):
         return playlist_user, None
     
         
-    
-   
+
