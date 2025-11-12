@@ -1,5 +1,8 @@
 from wrap_playlist.playlist_function import caller_playlist
 from validate.verify_text import verify_number
+from get_data.call import current_playlist
+from add_playlist.functions_add import get_modify
+from get_data.interact_user import display_songs
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
     """
@@ -15,7 +18,9 @@ def menu_playlist():
                  
         elif option==2:
             if playlist_info:
-                pass
+                playlist_user,question=display_songs
+                sp=current_playlist()
+                get_modify(sp)  
             else:
                 print("First you must enter your playlist.")
         elif option==3:

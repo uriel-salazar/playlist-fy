@@ -28,7 +28,8 @@ def get_spotify ():
             redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
             scope=" ".join(scopes)
             
-        ))
+        )
+    )
     
     
 def current_playlist():
@@ -40,7 +41,6 @@ def current_playlist():
     """
     sp=get_spotify () #spotify client object 
     playlists = sp.current_user_playlists()
-
     return sp,playlists
             
     
