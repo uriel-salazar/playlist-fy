@@ -12,13 +12,13 @@ def menu_playlist():
         print("3. Delete a playlist ")
         option=verify_number("Select an option :")
         if option==1:
-            caller_playlist()
+            tag=caller_playlist()
             playlist_info=True
                  
         elif option==2:
             if playlist_info:
                 sp=current_playlist()
-                get_modify(sp)  
+                get_modify(sp,tag)  
             else:
                 print("First you must enter your playlist.")
         elif option==3:
