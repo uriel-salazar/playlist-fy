@@ -49,19 +49,9 @@ def extract_dict(playlist):
         "Artist":name_artist,
         "Uri":uri_spotify
             }
-    return playlist_user,playlist_name,tracks,
+    return tracks,playlist_name,playlist_user,name_song,name_artist,uri_spotify
 
 
-def overview_logic(playlist,songs):
-    batch_size=5
-    start=0
-    end = start + batch_size
-    for item in songs[start:end]:
-        track_name = item["track_name"] 
-        artist_name = item["artist"]
-        uri = item["uri"]
-        start += batch_size
-    return start,track_name,artist_name,uri,end
 
 def overview_show(begin,name_song,artist,songs):
     print(f'Artist: {artist}, Name: {name_song}')
@@ -70,62 +60,43 @@ def overview_show(begin,name_song,artist,songs):
             print("No more songs.")
             break
         
-    
+        more = input("Show more songs? (y/n): ").lower()
+        if more != "y":
+            break
+        
+
     
     
 
-def display_songs(playlist):
-    """ Displays first 5 songs of playlist's user selected.
-    Creates a playlist's dict with information such as name of the track,artist and spotify uri.
-    Args:
-        playlist (_type_): _description_
-
-    Returns:
-        playlist_user(dict) : User's playlist dict 
-    """
-    tracks = playlist["tracks"]
-    playlist_name=playlist["playlist_name"]
+def overview_logic(songs,name_playlist,dict_playlist):
+    
     batch_size = 5 
     start = 0
-    playlist_user={}
-    print(f" --- Playlist : {playlist_name}🎵 ---")
+    print(f" --- Playlist : {name_playlist}🎵 ---")
     
-    for i in tracks:
-        name_song=i["track_name"]
-        name_artist=i["artist"]
-        uri_spotify=i["uri"]
-
-        playlist_user[name_song]={
-        "Artist":name_artist,
-        "Uri":uri_spotify
-            }
-    
-    
-    while start < len(tracks):
+    while start < len(songs):
         end = start + batch_size
-        for item in tracks[start:end]:
+        for item in songs[start:end]:
             track_name = item["track_name"] 
             artist_name = item["artist"]
             uri = item["uri"] 
-
-            print(f'Artist: {artist_name}, Name: {track_name}')
              
         start += batch_size
 
-        if start >= len(tracks):
+        if start >= len():
             print("No more songs.")
             break
         
         more = input("Show more songs? (y/n): ").lower()
         if more != "y":
             break
-    print(playlist_user)
+    
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
-        print(f" You selected {playlist_name} as your playlist !")
-        return playlist_user, question
+        print(f" You selected {name_playlist} as your playlist !")
+        return dict_playlist, question
     else:
-        return playlist_user, None
+        return dict_playlist, None
     
         
 
