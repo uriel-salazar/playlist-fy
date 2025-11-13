@@ -1,5 +1,4 @@
 
-import os 
 
 def print_playlist(data):
     """
@@ -53,23 +52,12 @@ def extract_dict(playlist):
 
 
 
-def overview_show(begin,name_song,artist,songs):
-    print(f'Artist: {artist}, Name: {name_song}')
-    while begin < len(songs):
-        if begin >= songs:
-            print("No more songs.")
-            break
-        
-        more = input("Show more songs? (y/n): ").lower()
-        if more != "y":
-            break
+def overview_show(artist_n,song_n):
+    print(f'Artist: {artist_n}, Song: {song_n}')
         
 
-    
-    
 
-def overview_logic(songs,name_playlist,dict_playlist):
-    
+def overview_logic(songs,name_playlist,dict_setlist):
     batch_size = 5 
     start = 0
     print(f" --- Playlist : {name_playlist}🎵 ---")
@@ -77,13 +65,11 @@ def overview_logic(songs,name_playlist,dict_playlist):
     while start < len(songs):
         end = start + batch_size
         for item in songs[start:end]:
-            track_name = item["track_name"] 
-            artist_name = item["artist"]
-            uri = item["uri"] 
+            overview_show(item["track_name"],item["artist"])
              
         start += batch_size
 
-        if start >= len():
+        if start >= len(songs):
             print("No more songs.")
             break
         
@@ -94,9 +80,9 @@ def overview_logic(songs,name_playlist,dict_playlist):
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
         print(f" You selected {name_playlist} as your playlist !")
-        return dict_playlist, question
+        return dict_setlist, question
     else:
-        return dict_playlist, None
+        return dict_setlist, None
     
         
 
