@@ -18,7 +18,6 @@ def menu_playlist():
                  
         elif option==2:
             if playlist_info:
-                playlist_user,question=display_songs
                 sp=current_playlist()
                 get_modify(sp)  
             else:

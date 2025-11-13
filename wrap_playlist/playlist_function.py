@@ -1,5 +1,5 @@
 from get_data.call import get_spotify,current_playlist,dict_playlist
-from get_data.interact_user import extract_dict,print_playlist,overview_logic,overview_show
+from get_data.interact_user import extract_dict,print_playlist,overview_logic,overview_show,
 
 from saving.save_playlists import data_playlist
 def caller_playlist():
@@ -11,16 +11,16 @@ def caller_playlist():
     while True:
             #playlists availables 
             selected=print_playlist(playlist_data)
-            playlist_user,playlist_name,tracks=extract_dict()
-            start,track_name,artist_name,uri,uri,end=overview_logic(playlist_user,tracks)
-            overview_show(start,track_name,artist_name,track_name)
+            tracks,playlist_name,playlist_user,name_song,name_artist,uri_spotify=extract_dict(selected)
+            dict_playlist,question=overview_logic(tracks,playlist_name,playlist_user)
+            overview_show(start,track_name,artist_name,tracks)
             
-            if question=="yes":
-                table_playlist=data_playlist(playlist_user)
-                break
-            else:
-                again=input("Search another playlist? :")
-                if again!="yes":
-                    break
+     #       if question=="yes":
+     #           table_playlist=data_playlist(playlist_user)
+     #           break
+      ##      else:
+       #         again=input("Search another playlist? :")
+       #         if again!="yes":
+       #             break
                     
     
