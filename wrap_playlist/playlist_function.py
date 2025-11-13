@@ -16,13 +16,14 @@ def caller_playlist():
             selected=print_playlist(playlist_data)
             tracks,playlist_name,playlist_user,name_song,name_artist,uri_spotify,tag=extract_dict(selected)
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
-            overview_show(name_artist,name_song)
+            
             
             if question=="yes":
-               dict_playlist(sp,playlists)
+               pass
                break
             else:
               again=input("Search another playlist? (yes / no):")
+
             if again!="yes":
                    break
                     
