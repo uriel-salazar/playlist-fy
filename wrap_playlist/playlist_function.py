@@ -3,6 +3,9 @@ from get_data.interact_user import extract_dict,print_playlist,overview_logic,ov
 
 
 def caller_playlist():
+    """ Calls functions for knowning the playlist selected 
+  If the user doesn't choose any playlist is going to ask if wants to choose another one. 
+  """
     #loads client id and secret,converts scopes into lists
     get_spotify() 
     sp,playlists=current_playlist()
