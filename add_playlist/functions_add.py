@@ -1,13 +1,14 @@
-
+from pprint import pprint
 import os 
+from validate.verify_text import get_letters
 
 def get_uri():
     pass
 
 
 
-def ask_songs(sp):
-    """ Ask to user for songs to add 
+def available(sp):
+    """ Gets available songs 
 
     Args:
         sp (spotipy): SpotifyOAuth 
@@ -15,10 +16,25 @@ def ask_songs(sp):
     Returns:
         results(spotipy): Raw dictionary of available tracks 
     """
-    search=input("What song you want to search?:")
-    results = sp.search(q=search, type="track", limit=7)
-    print(results)
-    return results 
+    search=get_letters("What song do you want to search?:")
+    results = sp.search(q=search, type="track", limit=5)
+
+    items=results["tracks"]["items"]
+    track_list=[]
+    for index,track in enumerate(items,start=1):
+        print(f' {index}  {track["name"]}  Artist : {track["artists"][0]["name"]}')
+        track_list.append({
+            "name":track["name"],
+            "artist":track["artist"][0]["name"],
+            "id":track["id"]
+        })
+    return track_list
+
+       
+        
+        
+    
+        
 
 
     
