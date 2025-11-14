@@ -25,10 +25,14 @@ def available(sp):
         print(f' {index}  {track["name"]}  Artist : {track["artists"][0]["name"]}')
         track_list.append({
             "name":track["name"],
-            "artist":track["artist"][0]["name"],
-            "id":track["id"]
+            "artist":track["artists"][0]["name"],
+            "uri":track["uri"]
         })
     return track_list
+
+
+def select_song(list_song):
+    print(list_song)
 
        
         
