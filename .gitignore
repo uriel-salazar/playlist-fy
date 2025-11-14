@@ -2,3 +2,4 @@
 .cache
 *.pyc
 user_playlists.csv
+launch.json
