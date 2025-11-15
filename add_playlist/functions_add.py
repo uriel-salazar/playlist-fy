@@ -8,7 +8,8 @@ def get_uri():
 
 
 def available(sp):
-    """ Gets available songs 
+    """ Gets available songs from search 
+    Creates a dict from the available songs (name of the song,artist and uri)
 
     Args:
         sp (spotipy): SpotifyOAuth 
@@ -22,17 +23,18 @@ def available(sp):
     items=results["tracks"]["items"]
     track_list=[]
     for index,track in enumerate(items,start=1):
-        print(f' {index}  {track["name"]}  Artist : {track["artists"][0]["name"]}')
+        select_song(index,track)
         track_list.append({
             "name":track["name"],
             "artist":track["artists"][0]["name"],
             "uri":track["uri"]
         })
-    return track_list
+    return index,track,track_list
 
 
-def select_song(list_song):
-    print(list_song)
+def select_song(indx,song):
+     print(f' {indx} {song["name"]}  Artist : {song["artists"][0]["name"]}')
+    
 
        
         

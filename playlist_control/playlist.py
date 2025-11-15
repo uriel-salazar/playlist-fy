@@ -18,8 +18,8 @@ def menu_playlist():
         elif option==2:
             if playlist_info:
                 sp,playlists=current_playlist()
-                track_list=available(sp)
-                select_song(track_list)
+                index,track,track_list=available(sp)
+        
                  
             else:
                 print("First you must enter your playlist.")
