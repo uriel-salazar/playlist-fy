@@ -18,7 +18,7 @@ def menu_playlist():
         elif option==2:
             if playlist_info:
                 sp,playlists=current_playlist()
-                index,track,track_list=available(sp)
+                index,track,track_list,song_chosen=available(sp)
         
                  
             else:

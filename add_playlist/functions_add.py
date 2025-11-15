@@ -1,6 +1,6 @@
 from pprint import pprint
 import os 
-from validate.verify_text import get_letters
+from validate.verify_text import get_letters,verify_number
 
 def get_uri():
     pass
@@ -23,17 +23,52 @@ def available(sp):
     items=results["tracks"]["items"]
     track_list=[]
     for index,track in enumerate(items,start=1):
-        select_song(index,track)
+        song_chosen=select_song(index,track,items)
         track_list.append({
             "name":track["name"],
             "artist":track["artists"][0]["name"],
             "uri":track["uri"]
         })
-    return index,track,track_list
+        
+    return index,track,track_list,song_chosen
 
 
-def select_song(indx,song):
-     print(f' {indx} {song["name"]}  Artist : {song["artists"][0]["name"]}')
+def select_song(indx,song,i):
+    """ Prints the available songs and validation input 
+
+    Args:
+       indx :(int): Index songs 
+        song (_type_): Founded songs 
+        i (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    print(f' {indx} {song["name"]}  Artist : {song["artists"][0]["name"]}')
+
+    while True:
+        select=input("Please select a song (1-5) : ")
+
+        if select.lower() == "exit":
+            print("Exiting of song selection...")
+            return  
+
+        if not select.isdigit():
+            print(" Please enter a valid number.")
+            continue 
+
+        select= int(select)
+        
+        if 1 <= select<= len(i): 
+            break
+        else:
+        #If the output equal less or beyond the available option,applies this verification
+            print(" Number out of range. Please Try again.")
+        
+        song_chosen=i[select-1]
+        return song_chosen
+    
+        
     
 
        
