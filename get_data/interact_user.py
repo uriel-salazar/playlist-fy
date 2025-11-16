@@ -51,7 +51,7 @@ def extract_dict(playlist):
     tracks=playlist["tracks"]
     playlist_name=playlist["playlist_name"]
     playlist_user={}
-    tag=playlist["id"]
+    tag=playlist["uri"]
     
     
     for i in tracks:
@@ -61,8 +61,9 @@ def extract_dict(playlist):
         
         ###
         playlist_user[name_song]={
+        "Uri Playlist":tag,
         "Artist":name_artist,
-        "Uri":uri_spotify
+        "Uri Song ":uri_spotify
             }
     return tracks,playlist_name,playlist_user,name_song,name_artist,uri_spotify,tag
 

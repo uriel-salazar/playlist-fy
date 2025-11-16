@@ -5,7 +5,7 @@ def wrap_songs():
     sp,playlists=current_playlist()
     while True:
         index,track,track_list,song_chosen=available(sp)
-        change_song=chosen(song_chosen)
+        change_song,uri_song=chosen(song_chosen)
         if change_song=="yes":
             pass
             break
