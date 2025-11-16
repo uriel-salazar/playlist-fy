@@ -22,18 +22,21 @@ def available(sp):
 
     items=results["tracks"]["items"]
     track_list=[]
+    #loops for each song founded 
     for index,track in enumerate(items,start=1):
-        song_chosen=select_song(index,track,items)
+        print(f' {index} {track["name"]}  Artist : {track["artists"][0]["name"]}')
         track_list.append({
             "name":track["name"],
             "artist":track["artists"][0]["name"],
             "uri":track["uri"]
         })
+    song_chosen=select_song(track_list)
+
         
     return index,track,track_list,song_chosen
 
 
-def select_song(indx,song,i):
+def select_song(i):
     """ Prints the available songs and validation input 
 
     Args:
@@ -44,9 +47,8 @@ def select_song(indx,song,i):
     Returns:
         _type_: _description_
     """
-    print(f' {indx} {song["name"]}  Artist : {song["artists"][0]["name"]}')
-
     while True:
+        
         select=input("Please select a song (1-5) : ")
 
         if select.lower() == "exit":
@@ -59,18 +61,22 @@ def select_song(indx,song,i):
 
         select= int(select)
         
-        if 1 <= select<= len(i): 
+        if 1 <= select <= len(i): 
             break
         else:
         #If the output equal less or beyond the available option,applies this verification
             print(" Number out of range. Please Try again.")
         
-        song_chosen=i[select-1]
-        return song_chosen
+    song_chosen=i[select-1]
+    return song_chosen
     
         
     
-
+def chosen(song):
+    print(f" You chose {song['name']}")
+    change_song=input("Do you want change of song? (yes/no) :")
+    return change_song
+    
        
         
         
