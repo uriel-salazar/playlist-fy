@@ -73,8 +73,16 @@ def select_song(i):
         
     
 def chosen(song):
-    print(f" You chose {song['name']}")
-    change_song=input("Do you want change of song? (yes/no) :")
+    """ Ask to user if want to use that song 
+
+    Args:
+        song (dict): song selected by user 
+
+    Returns:
+     change_song (str): ("yes or no answer ")
+    """
+    print(f" You chose {song['name']} {song['artist']}")
+    change_song=input(" Add this song ? (yes/no) :")
     return change_song
     
        
