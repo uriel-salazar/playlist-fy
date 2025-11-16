@@ -61,10 +61,10 @@ def dict_playlist(scope,collections):
     playlist_data = []
 
     for playlist in collections["items"]:
-        playlist_id = playlist["id"]
+        playlist_uri = playlist["uri"]
         playlist_name = playlist["name"]
 
-        results = scope.playlist_items(playlist_id)
+        results = scope.playlist_items(playlist_uri)
 
         tracks = [
             {
@@ -78,7 +78,7 @@ def dict_playlist(scope,collections):
 
         playlist_data.append({
             "playlist_name": playlist_name,
-            "id": playlist_id,
+            "uri": playlist_uri,
             "tracks": tracks
         })
     return playlist_data

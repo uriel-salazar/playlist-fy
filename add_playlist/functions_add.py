@@ -1,9 +1,10 @@
 from pprint import pprint
 import os 
-from validate.verify_text import get_letters,verify_number
+from validate.verify_text import get_letters
 
-def get_uri():
+def basic():
     pass
+    
 
 
 
@@ -80,10 +81,12 @@ def chosen(song):
 
     Returns:
      change_song (str): ("yes or no answer ")
+     uri_song (str): Song's uri 
     """
+    uri_song=song["uri"]
     print(f" You chose {song['name']} {song['artist']}")
     change_song=input(" Add this song ? (yes/no) :")
-    return change_song
+    return change_song,uri_song
     
        
         
