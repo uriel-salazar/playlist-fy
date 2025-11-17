@@ -2,7 +2,7 @@ from pprint import pprint
 import os 
 from validate.verify_text import get_letters
 
-def basic():
+def add(uri_track,playlist_track):
     pass
     
 
@@ -84,7 +84,7 @@ def chosen(song):
      uri_song (str): Song's uri 
     """
     uri_song=song["uri"]
-    print(f" You chose {song['name']} {song['artist']}")
+    print(f" You chose {song['name']} by  {song['artist']}")
     change_song=input(" Add this song ? (yes/no) :")
     return change_song,uri_song
     
