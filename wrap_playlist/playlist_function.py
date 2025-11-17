@@ -1,5 +1,5 @@
-from get_data.call import get_spotify,current_playlist,dict_playlist,get_uri_playlist
-from get_data.interact_user import overview_logic
+from api_data.call import get_spotify,current_playlist,dict_playlist,get_uri_playlist
+from api_data.interact_user import overview_logic
 
 
 
