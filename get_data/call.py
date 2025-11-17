@@ -2,10 +2,7 @@ import os
 import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
-
-
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from get_data.interact_user import print_playlist,extract_dict
 
 def get_spotify ():
     """ Loads authorization variables,creates lists with scopes to read
@@ -82,6 +79,14 @@ def dict_playlist(scope,collections):
             "tracks": tracks
         })
     return playlist_data
+
+
+def get_uri_playlist(playlist_data):
+    selected=print_playlist(playlist_data)
+    tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist=extract_dict(selected)
+    return tracks,playlist_name,playlist_user,uri_playlist
+
+
     
     
     

@@ -1,8 +1,9 @@
-from pprint import pprint
-import os 
+
 from validate.verify_text import get_letters
 
 def add(uri_track,playlist_track):
+    print(uri_track)
+    print(playlist_track)
     pass
     
 

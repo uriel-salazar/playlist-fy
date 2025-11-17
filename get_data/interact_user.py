@@ -51,13 +51,12 @@ def extract_dict(playlist):
     tracks=playlist["tracks"]
     playlist_name=playlist["playlist_name"]
     playlist_user={}
-    tag=playlist["uri"]
+    uri_playlist=playlist["uri"]
     
     
     for i in tracks:
         name_song=i["track_name"]
         name_artist=i["artist"]
-        uri_playlist=i["uri"]
         
         ###
         playlist_user[name_song]={
