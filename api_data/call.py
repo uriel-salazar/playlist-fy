@@ -50,7 +50,7 @@ def dict_playlist(scope,collections):
 
     Args:
         scope (spotipy.Spotify) Get scopes 
-        collections (_type_ ): Get current user playlists
+        collections (spotipy): Get current user playlists
 
     Returns:
         - playlist_data (list): (songs,music artists,id's)

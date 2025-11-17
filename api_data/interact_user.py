@@ -85,9 +85,9 @@ def overview_logic(songs,name_playlist,dict_setlist):
     If not,is going to ask to user if this is the playlist to work on
 
     Args:
-        songs (_type_): Playlist songs 
-        name_playlist (_type_): Name of the playlist 
-        dict_setlist (_type_): Dictionary with playlist selected
+        - songs (dict)): Playlist's songs 
+        - name_playlist (str): Name of the playlist 
+        - dict_setlist (dict): Dictionary with playlist selected
 
     Returns:
         dict_setlist :(dict) : Dictionary with playlist selected 

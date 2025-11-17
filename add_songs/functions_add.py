@@ -3,6 +3,13 @@ from validate.verify_text import get_letters
 
 
 def add(playlist_uri,uri_track,sp):
+    """ Adds new song to playlist 
+
+    Args:
+        playlist_uri (str): _description_
+        uri_track (list): List of uri's songs 
+        sp (spotipy): _description_
+    """
     sp.playlist_add_items(playlist_uri, uri_track)
     print("Song added!!")
 
@@ -41,12 +48,10 @@ def select_song(i):
     """ Prints the available songs and validation input 
 
     Args:
-       indx :(int): Index songs 
-        song (_type_): Founded songs 
         i (_type_): _description_
 
     Returns:
-        _type_: _description_
+        song_chosen (_type_ ): _description_
     """
     while True:
         

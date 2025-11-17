@@ -5,7 +5,10 @@ from api_data.interact_user import overview_logic
 
 def caller_playlist():
     """ Calls functions for knowning the playlist selected 
-  If the user doesn't choose any playlist is going to ask if wants to choose another one. 
+  If the user doesn't choose any playlist is going to ask if wants to choose another one.
+  Returns:
+  value_playlist (str): uri's playlist 
+   
   """
     #loads client id and secret,converts scopes into lists
     get_spotify() 
