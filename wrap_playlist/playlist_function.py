@@ -1,5 +1,6 @@
-from get_data.call import get_spotify,current_playlist,dict_playlist
+from get_data.call import get_spotify,current_playlist,dict_playlist,get_uri_playlist
 from get_data.interact_user import extract_dict,print_playlist,overview_logic
+
 
 
 def caller_playlist():
@@ -13,12 +14,10 @@ def caller_playlist():
     playlist_data=dict_playlist(sp,playlists)
     while True:
             #playlists availables 
-            selected=print_playlist(playlist_data)
-            tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist=extract_dict(selected)
+            tracks,playlist_name,playlist_user,uri_playlist=get_uri_playlist(playlist_data)   
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
             value_playlist=uri_playlist
             if question=="yes":
-               pass
                break
             else:
               again=input("Search another playlist? (yes / no):")
