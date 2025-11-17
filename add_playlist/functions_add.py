@@ -1,11 +1,10 @@
 
 from validate.verify_text import get_letters
 
-def add(uri_track,playlist_track):
-    print(uri_track)
-    print(playlist_track)
-    pass
-    
+
+def add(playlist_uri,uri_track,sp):
+    sp.playlist_add_items(playlist_uri, uri_track)
+    print("Song added!!")
 
 
 
@@ -84,8 +83,9 @@ def chosen(song):
      change_song (str): ("yes or no answer ")
      uri_song (str): Song's uri 
     """
-    uri_song=song["uri"]
-    print(f" You chose {song['name']} by  {song['artist']}")
+    uri_song=(song["uri"])
+    uri_song=[uri_song]
+    print(f" You chose - {song['name']} -  by  {song['artist']}")
     change_song=input(" Add this song ? (yes/no) :")
     return change_song,uri_song
     
