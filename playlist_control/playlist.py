@@ -1,6 +1,7 @@
 from wrap_playlist.playlist_function import caller_playlist
 from validate.verify_text import verify_number
 from add_songs.add_functions import wrap_songs
+from eliminate_playlist.erase import eliminate
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
     """
@@ -21,9 +22,8 @@ def menu_playlist():
             else:
                 print("First you must enter your playlist.")
         elif option==3:
-            if playlist_info:
-                print("-- Delete Playlist -- ")
-                pass
+                print("-- Delete Playlist -- ") 
+                eliminate()
         else:
             pass
         
