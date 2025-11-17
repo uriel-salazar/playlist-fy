@@ -29,7 +29,7 @@ def get_spotify ():
     
     
 def current_playlist():
-    """  Displays the current user's available Spotify playlists.
+    """  Gets the current user's available Spotify playlists.
 
     Returns:
        - sp (spotipy.Spotify): The authenticated Spotify client object.
