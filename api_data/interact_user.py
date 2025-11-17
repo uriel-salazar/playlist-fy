@@ -9,8 +9,22 @@ def print_playlist(data):
 
     Returns:
     """
-    for index, playlist in enumerate(data[:5], start=1):
+    item=len(data)
+    loop=5
+    stop=data[:loop]
+    # trying to print just 5 playlist then if the user wants more,
+    #you can view the other remaining ones 
+    remain=data[loop:]
+    for index, playlist in enumerate(stop, start=1):
         print(f"{index}. {playlist['playlist_name']}")
+    more=input(" Do you want to see  all your playlist?? (yes / no ): ")
+    if more=="yes":
+        for playlist in remain:       
+            print(f" {playlist['playlist_name']} ")
+            continue
+    if more=="no":
+        pass
+              
 
     while True:
         choice = input("Select an option (or 'exit' to quit): ")
