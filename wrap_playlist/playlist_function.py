@@ -14,9 +14,9 @@ def caller_playlist():
     while True:
             #playlists availables 
             selected=print_playlist(playlist_data)
-            tracks,playlist_name,playlist_user,name_song,name_artist,uri_spotify,tag=extract_dict(selected)
+            tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist=extract_dict(selected)
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
-            
+            value_playlist=uri_playlist
             if question=="yes":
                pass
                break
@@ -25,5 +25,6 @@ def caller_playlist():
 
             if again!="yes":
                    break
-    return tag 
+    return value_playlist
+    
                     
