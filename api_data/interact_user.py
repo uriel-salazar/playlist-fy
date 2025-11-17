@@ -9,7 +9,7 @@ def print_playlist(data):
 
     Returns:
     """
-    for index, playlist in enumerate(data, start=1):
+    for index, playlist in enumerate(data[:5], start=1):
         print(f"{index}. {playlist['playlist_name']}")
 
     while True:
