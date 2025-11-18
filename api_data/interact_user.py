@@ -9,43 +9,47 @@ def print_playlist(data):
 
     Returns:
     """
-    item=len(data)
-    loop=5
-    stop=data[:loop]
-    # trying to print just 5 playlist then if the user wants more,
-    #you can view the other remaining ones 
-    remain=data[loop:]
-    for index, playlist in enumerate(stop, start=1):
-        print(f"{index}. {playlist['playlist_name']}")
-    more=input(" Do you want to see  all your playlist?? (yes / no ): ")
-    if more=="yes":
-        for indx , playlist in enumerate(remain,start=6):
-            print(f" {indx}. {playlist['playlist_name']} ")
-            continue
-    if more=="no":
-        pass
-              
+    stop = 5
+
     while True:
-        choice = input("Select an option (or 'exit' to quit): ")
+        # Show first 5 playlists
+        for index, playlist in enumerate(data[:stop], start=1):
+            print(f"{index}. {playlist['playlist_name']}")
 
-        if choice.lower() == "exit":
+        if len(data) > stop:
+            print("m. See more playlists")
+        
+        print("exit. Exit selection")
+
+        choice = input("Select an option: ").strip().lower()
+
+        # Exit
+        if choice == "exit":
             print("Exiting playlist selection...")
-            return  
+            return None
 
+        # Show more playlists
+        if choice == "m" and len(data) > stop:
+            print("\nAll playlists:")
+            for i, playlist in enumerate(data, start=1):
+                print(f"{i}. {playlist['playlist_name']}")
+            continue  # ask again
+
+        # Validate number
         if not choice.isdigit():
-            print(" Please enter a valid number.")
-            continue 
+            print("Please enter a valid number.")
+            continue
 
         choice = int(choice)
-        #If the output equal less or beyond the available option,applies this verification.
-        if 1 <= choice <= len(data): 
-            break
+        
+        select=data[choice-1]
+
+        if 1 <= choice <= len(data):
+            return select
         else:
-            print(" Number out of range. Try again.")
-
-    selected = data[choice - 1]
-    return selected
-
+            print("Number out of range, try again.")
+    
+    
 
 def extract_dict(playlist):
     """ Creates dict of playlist selected 
