@@ -19,13 +19,12 @@ def print_playlist(data):
         print(f"{index}. {playlist['playlist_name']}")
     more=input(" Do you want to see  all your playlist?? (yes / no ): ")
     if more=="yes":
-        for playlist in remain:       
-            print(f" {playlist['playlist_name']} ")
+        for indx , playlist in enumerate(remain,start=6):
+            print(f" {indx}. {playlist['playlist_name']} ")
             continue
     if more=="no":
         pass
               
-
     while True:
         choice = input("Select an option (or 'exit' to quit): ")
 
