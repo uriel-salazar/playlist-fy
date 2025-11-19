@@ -60,6 +60,7 @@ def dict_playlist(scope,collections):
     for playlist in collections["items"]:
         playlist_uri = playlist["uri"]
         playlist_name = playlist["name"]
+        playlist_public=playlist["public"]
 
         results = scope.playlist_items(playlist_uri)
 
@@ -76,7 +77,8 @@ def dict_playlist(scope,collections):
         playlist_data.append({
             "playlist_name": playlist_name,
             "uri": playlist_uri,
-            "tracks": tracks
+            "tracks": tracks,
+            "public":playlist_public
         })
     return playlist_data
 
