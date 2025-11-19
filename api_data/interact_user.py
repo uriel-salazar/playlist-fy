@@ -58,6 +58,7 @@ def extract_dict(playlist):
     playlist_name=playlist["playlist_name"]
     playlist_user={}
     uri_playlist=playlist["uri"]
+    is_public=playlist["public"]
     
     
     for i in tracks:
