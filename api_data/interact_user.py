@@ -1,4 +1,5 @@
 
+from validate.verify_text import get_letters
 
 def print_playlist(data):
     """
@@ -9,38 +10,26 @@ def print_playlist(data):
 
     Returns:
     """
-    stop = 5
+    limit = 5
 
     while True:
-        # Show first 5 playlists
-        for index, playlist in enumerate(data[:stop], start=1):
-            print(f"{index}. {playlist['playlist_name']}")
-
-        if len(data) > stop:
-            print("m. See more playlists")
         
-        print("exit. Exit selection")
+        for index, playlist in enumerate(data[:limit], start=1):
+            print(f" * {index}. {playlist['playlist_name']}")
 
-        choice = input("Select an option: ").strip().lower()
+            
+        more=get_letters("See more playlist ? yes /no : ").lower()
 
-        # Exit
-        if choice == "exit":
-            print("Exiting playlist selection...")
-            return None
-
-        # Show more playlists
-        if choice == "m" and len(data) > stop:
-            print("\nAll playlists:")
+        
+        if more == "yes" and len(data) > limit:
+            print("\n All playlists :")
             for i, playlist in enumerate(data, start=1):
                 print(f"{i}. {playlist['playlist_name']}")
-            continue  # ask again
-
-        # Validate number
-        if not choice.isdigit():
-            print("Please enter a valid number.")
-            continue
-
-        choice = int(choice)
+                
+        if len(data)< limit:
+            pass
+        
+        choice =int(input("Please select an opcion :"))
         
         select=data[choice-1]
 
@@ -89,8 +78,8 @@ def overview_show(artist_n,song_n):
     - connected to overview_logic function -
 
     Args:
-        artist_n (_type_): Name of the artist
-        song_n (_type_): Name of the song 
+        artist_n (str): Name of the artist
+        song_n (str): Name of the song 
     """
     print(f'Artist: {artist_n}, Song: {song_n}')
         
