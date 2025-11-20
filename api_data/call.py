@@ -85,8 +85,10 @@ def dict_playlist(scope,collections):
 
 def get_uri_playlist(playlist_data):
     selected=print_playlist(playlist_data)
-    tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist=extract_dict(selected)
-    return tracks,playlist_name,playlist_user,uri_playlist
+    tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist,is_public=extract_dict(selected)
+    return tracks,playlist_name,playlist_user,uri_playlist,is_public
+
+
 
 
     
