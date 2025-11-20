@@ -1,5 +1,5 @@
 
-from validate.verify_text import get_letters
+from validate.verify_text import get_letters,verify_number
 
 def print_playlist(data):
     """
@@ -29,7 +29,7 @@ def print_playlist(data):
         if len(data)< limit:
             pass
         
-        choice =int(input("Please select an opcion :"))
+        choice =verify_number("Please select an opcion :")
         
         select=data[choice-1]
 
@@ -69,8 +69,10 @@ def extract_dict(playlist):
         playlist_user[name_song]={
         "Uri playlist":uri_playlist,
         "Artist":name_artist,
+        "public":is_public
             }
-    return tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist
+    return tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist,is_public
+
 
 
 

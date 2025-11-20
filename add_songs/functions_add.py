@@ -91,8 +91,20 @@ def chosen(song):
     uri_song=(song["uri"])
     uri_song=[uri_song]
     print(f" You chose - {song['name']} -  by  {song['artist']}")
-    change_song=input(" Add this song ? (yes/no) :")
+    change_song=input(" Add song ? (yes/no) :")
     return change_song,uri_song
+
+
+def handle_error(general):
+     if general==True:
+         print("You can't add songs to this playlist :(")
+         public=True
+     else:
+        public=False
+     return public
+  
+
+        
     
        
         

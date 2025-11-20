@@ -1,8 +1,10 @@
 from api_data.call import current_playlist
-from add_songs.functions_add import available,chosen,add
+from add_songs.functions_add import available,chosen,add,handle_error
 from wrap_playlist.playlist_function import current_playlist
 
-def wrap_songs(uri_playlist):
+
+
+def wrap_songs(uri_playlist,is_public):
     """ Calls songs functions
     function for displaying the current playlists,function where shows available songs for playlist selected 
     and function for adding songs to a specific playlist 
@@ -15,8 +17,12 @@ def wrap_songs(uri_playlist):
         _,_,_,song_chosen=available(sp)
         change_song,uri_song=chosen(song_chosen)
         if change_song=="yes":
-            add(uri_playlist,uri_song,sp)
-            break
+            public=handle_error(is_public)
+            if public==False:
+                add(uri_playlist,uri_song,sp)
+            else:
+                print("You can't modify public playlists")
+                break     
         else:
             continue
     

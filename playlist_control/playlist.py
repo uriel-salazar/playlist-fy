@@ -12,12 +12,12 @@ def menu_playlist():
         print("3. Delete a playlist ")
         option=verify_number("Select an option :")
         if option==1:
-            value_playlist=caller_playlist()
+            value_playlist,public=caller_playlist()
             playlist_info=True
                  
         elif option==2:
             if playlist_info:
-                wrap_songs(value_playlist)
+                wrap_songs(value_playlist,public)
                     
             else:
                 print("First you must enter your playlist.")
