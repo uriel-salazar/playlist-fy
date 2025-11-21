@@ -1,12 +1,13 @@
-def change_playlist(chosen):
+def change_playlist():
     while True:
-        change_p=input("Do you want to change of playlist??")
-        if change_p=="yes":
-            no_chosen=True
+        answer=input("Do you want to change of playlist?? (y / n )")
+        if answer=="y":
+           return True
+        elif answer=="n":
+            return False
         else:
-            no_chosen=False
-            break
-        return no_chosen
+            print("Please, select a valid option ")
+        
     
     
     
