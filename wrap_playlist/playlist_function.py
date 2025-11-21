@@ -23,14 +23,13 @@ def caller_playlist():
             value_playlist=uri_playlist
             public=is_public
             if question=="yes":
-                picked=True
-                break
+                playlist_picked=True
             else:
               again=input("Search another playlist? (yes / no):") 
 
             if again!="yes":
-              
-                   break
-    return value_playlist,public,picked
+              pass
+              break
+    return value_playlist,public,playlist_picked
     
                     

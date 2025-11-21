@@ -3,10 +3,15 @@ from validate.verify_text import verify_number
 from add_songs.add_functions import wrap_songs
 from eliminate_playlist.erase import eliminate
 from change_playlist.change import change_playlist
-from playlist_control.select import select_playlist
+
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
     """
+
+    playlist_picked=False
+    public=None
+    value_playlist=None
+    
     while True:
         print("-- Spotify playlists --")
         print("1. Search playlist")
@@ -16,13 +21,12 @@ def menu_playlist():
         option=verify_number("Select an option :")
         
         if option==1:
-            value_playlist,public,playlist_info=select_playlist()
-            ready=playlist_info
-            return ready
-                 
+            value_playlist,public,playlist_picked=caller_playlist()
+
         elif option==2:
-            if playlist_info:
+            if playlist_picked:
                 wrap_songs(value_playlist,public)
+                break
                     
             else:
                 print("First you must enter your playlist.")
@@ -30,13 +34,14 @@ def menu_playlist():
                 print("-- Delete Playlist -- ") 
                 eliminate()
         elif option==4:
-             no_chosen=change_playlist(ready)
-             if no_chosen==True:
-                select_playlist()
-
+             to_change=change_playlist()
+             if to_change:
+                 value_playlist,public,playlist_picked=caller_playlist()
+             else:
+                 print("Continuing with playlist selected ")
         else:
             pass
-        return playlist_info
+        return playlist_picked
         
             
             
