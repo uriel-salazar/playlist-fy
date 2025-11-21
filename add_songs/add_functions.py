@@ -21,7 +21,6 @@ def wrap_songs(uri_playlist,is_public):
             if public==False:
                 add(uri_playlist,uri_song,sp)
             else:
-                print("You can't modify public playlists")
                 break     
         else:
             continue
