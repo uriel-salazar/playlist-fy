@@ -119,13 +119,14 @@ def overview_logic(songs,name_playlist,dict_setlist):
         more = input("Show more songs? (y/n): ").lower()
         if more != "y":
             break
-    
+
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
+        acccept=True
         print(f" You selected '{name_playlist}' as your playlist !")
         return dict_setlist, question
     else:
-        return dict_setlist, None
+        return dict_setlist, None,
     
         
 

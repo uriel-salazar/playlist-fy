@@ -15,6 +15,7 @@ def caller_playlist():
     sp,playlists=current_playlist()
     #creates a dict in base on user's playlists 
     playlist_data=dict_playlist(sp,playlists)
+  
     while True:
             #playlists availables 
             tracks,playlist_name,playlist_user,uri_playlist,is_public=get_uri_playlist(playlist_data)   
@@ -22,12 +23,14 @@ def caller_playlist():
             value_playlist=uri_playlist
             public=is_public
             if question=="yes":
-               break
+                picked=True
+                break
             else:
-              again=input("Search another playlist? (yes / no):")
+              again=input("Search another playlist? (yes / no):") 
 
             if again!="yes":
+              
                    break
-    return value_playlist,public
+    return value_playlist,public,picked
     
                     
