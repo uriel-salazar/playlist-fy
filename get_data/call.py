@@ -60,6 +60,7 @@ def dict_playlist(scope,collections):
     for playlist in collections["items"]:
         playlist_uri = playlist["uri"]
         playlist_name = playlist["name"]
+     #   name_user=playlist[""]
 
         results = scope.playlist_items(playlist_uri)
 

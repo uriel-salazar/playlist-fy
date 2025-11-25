@@ -4,7 +4,7 @@ from wrap_playlist.playlist_function import current_playlist
 
 
 
-def wrap_songs(uri_playlist,is_public):
+def wrap_songs(uri_playlist,is_public,yours):
     """ Calls songs functions
     function for displaying the current playlists,function where shows available songs for playlist selected 
     and function for adding songs to a specific playlist 

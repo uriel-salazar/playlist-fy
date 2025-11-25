@@ -62,6 +62,8 @@ def dict_playlist(scope,collections):
         playlist_name = playlist["name"]
         playlist_public=playlist["public"]
         own_playlist=playlist["owner"]
+        user_name=playlist["display name"]
+        
 
         results = scope.playlist_items(playlist_uri)
 
