@@ -61,7 +61,7 @@ def dict_playlist(scope,collections):
         playlist_uri = playlist["uri"]
         playlist_name = playlist["name"]
         playlist_public=playlist["public"]
-        collaborative=playlist["collaborative"]
+        own_playlist=playlist["owner"]
 
         results = scope.playlist_items(playlist_uri)
 
@@ -79,15 +79,16 @@ def dict_playlist(scope,collections):
             "playlist_name": playlist_name,
             "uri": playlist_uri,
             "tracks": tracks,
-            "public":playlist_public
+            "public":playlist_public,
+            "owner":own_playlist
         })
     return playlist_data
 
 
 def get_uri_playlist(playlist_data):
     selected=print_playlist(playlist_data)
-    tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist,is_public=extract_dict(selected)
-    return tracks,playlist_name,playlist_user,uri_playlist,is_public
+    tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist,is_public,owner=extract_dict(selected)
+    return tracks,playlist_name,playlist_user,uri_playlist,is_public,owner
 
 
 
