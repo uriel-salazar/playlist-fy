@@ -1,8 +1,6 @@
 from api_data.call import get_spotify,current_playlist,dict_playlist,get_uri_playlist
 from api_data.interact_user import overview_logic
 
-
-
 def caller_playlist():
     """ Calls functions for knowning the playlist selected 
   If the user doesn't choose any playlist is going to ask if wants to choose another one.
