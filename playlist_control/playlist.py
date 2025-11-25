@@ -7,10 +7,9 @@ from change_playlist.change import change_playlist
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
     """
-
-    playlist_picked=False
     public=None
     value_playlist=None
+    playlist_picked=False
     
     while True:
         print("-- Spotify playlists --")
@@ -22,26 +21,25 @@ def menu_playlist():
         
         if option==1:
             value_playlist,public,playlist_picked=caller_playlist()
-
+            playlist_picked=True
         elif option==2:
             if playlist_picked:
                 wrap_songs(value_playlist,public)
                 break
-                    
+                   
             else:
                 print("First you must enter your playlist.")
         elif option==3:
                 print("-- Delete Playlist -- ") 
                 eliminate()
         elif option==4:
-             to_change=change_playlist()
-             if to_change:
+             want_change=change_playlist()
+             if want_change:
                  value_playlist,public,playlist_picked=caller_playlist()
              else:
                  print("Continuing with playlist selected ")
         else:
             pass
-        return playlist_picked
         
             
             
