@@ -16,10 +16,11 @@ def caller_playlist():
   
     while True:
             #playlists availables 
-            tracks,playlist_name,playlist_user,uri_playlist,is_public=get_uri_playlist(playlist_data)   
+            tracks,playlist_name,playlist_user,uri_playlist,is_public,owner=get_uri_playlist(playlist_data)   
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
             value_playlist=uri_playlist
             public=is_public
+            is_playlist_user=owner
             if question=="yes":
                 playlist_picked=True
             else:
@@ -31,6 +32,6 @@ def caller_playlist():
             else:
               continue
             
-            return value_playlist,public,playlist_picked
+            return value_playlist,public,playlist_picked,is_playlist_user
     
                     

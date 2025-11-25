@@ -20,11 +20,11 @@ def menu_playlist():
         option=verify_number("Select an option :")
         
         if option==1:
-            value_playlist,public,playlist_picked=caller_playlist()
+            value_playlist,public,playlist_picked,is_playlist_user=caller_playlist()
             playlist_picked=True
         elif option==2:
             if playlist_picked:
-                wrap_songs(value_playlist,public)
+                wrap_songs(value_playlist,public,is_playlist_user)
                 break
                    
             else:
