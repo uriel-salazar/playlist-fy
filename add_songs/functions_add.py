@@ -1,7 +1,4 @@
 
-from validate.verify_text import get_letters
-
-
 def add(playlist_uri,uri_track,sp):
     """ Adds new song to playlist 
 
@@ -12,7 +9,7 @@ def add(playlist_uri,uri_track,sp):
     """
     sp.playlist_add_items(playlist_uri, uri_track)
     print("Song added!!")
-
+    print(" for exit, press 'out' ")
 
 
 def available(sp):
@@ -25,7 +22,7 @@ def available(sp):
     Returns:
         results(spotipy): Raw dictionary of available tracks 
     """
-    search=get_letters("What song do you want to search?:")
+    search=input("What song do you want to search?:")
     results = sp.search(q=search, type="track", limit=5)
 
     items=results["tracks"]["items"]
