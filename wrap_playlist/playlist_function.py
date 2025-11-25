@@ -25,11 +25,14 @@ def caller_playlist():
             if question=="yes":
                 playlist_picked=True
             else:
-              again=input("Search another playlist? (yes / no):") 
-
-            if again!="yes":
+                playlist_picked=False
+  
+            again=input("Search another playlist? (y / n):")
+            if again!="y": 
               pass
-              break
-    return value_playlist,public,playlist_picked
+            else:
+              continue
+            
+            return value_playlist,public,playlist_picked
     
                     
