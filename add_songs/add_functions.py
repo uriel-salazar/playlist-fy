@@ -1,7 +1,7 @@
 from api_data.call import current_playlist
 from add_songs.functions_add import available,chosen,add,handle_error
 from wrap_playlist.playlist_function import current_playlist
-
+from add_songs.functions_add import go_back
 
 
 def wrap_songs(uri_playlist,name_user):
@@ -18,12 +18,12 @@ def wrap_songs(uri_playlist,name_user):
         change_song,uri_song=chosen(song_chosen)
         if change_song=="yes":
             if name_user==user_name:
-                print("Accepted ")
-
-            add(uri_playlist,uri_song,sp)
-           
+                add(uri_playlist,uri_song,sp)
+            else:
+                print(" You can't modify a playlist from another user :(")
+                break
         else:
-            continue
+            go_back()
     
             
         

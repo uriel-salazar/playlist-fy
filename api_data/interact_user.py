@@ -1,4 +1,3 @@
-
 from validate.verify_text import get_letters,verify_number
 
 def print_playlist(data):
@@ -37,8 +36,7 @@ def print_playlist(data):
             return select
         else:
             print("Number out of range, try again.")
-    
-    
+
 
 def extract_dict(playlist):
     """ Creates dict of playlist selected 
@@ -60,8 +58,6 @@ def extract_dict(playlist):
     uri_playlist=playlist["uri"]
     name_owner=playlist["owner name"]["display_name"]
     
-    
-    
     for i in tracks:
         name_song=i["track_name"]
         name_artist=i["artist"]
@@ -75,8 +71,6 @@ def extract_dict(playlist):
     return tracks,playlist_name,playlist_user,uri_playlist,name_owner
 
 
-
-
 def overview_show(artist_n,song_n):
     """ Prints only 5 songs from the playlist 
     - connected to overview_logic function -
@@ -87,8 +81,6 @@ def overview_show(artist_n,song_n):
     """
     print(f'Artist: {artist_n}, Song: {song_n}')
         
-
-
 def overview_logic(songs,name_playlist,dict_setlist):
     """ Prints 5 songs from the playlist selected (logic
     If user want to see more songs : user has to enter (y or n)
@@ -123,8 +115,9 @@ def overview_logic(songs,name_playlist,dict_setlist):
 
     question = input("Are you going to use this playlist? (yes/no):").lower()
     if question == "yes":
-        acccept=True
+        
         print(f" You selected '{name_playlist}' as your playlist !")
+        
         return dict_setlist, question
     else:
         return dict_setlist, None,

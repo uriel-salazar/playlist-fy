@@ -9,7 +9,7 @@ def add(playlist_uri,uri_track,sp):
     """
     sp.playlist_add_items(playlist_uri, uri_track)
     print("Song added!!")
-    print(" for exit, press 'out' ")
+    
 
 
 def available(sp):
@@ -99,7 +99,19 @@ def handle_error(general):
      else:
         public=False
      return public
-  
+
+
+def go_back():
+    while True:
+        no_stay=input("for exit, press 'out' ")
+        if no_stay=="out":
+            break
+        else:
+            pass
+        
+        
+
+
 
         
     
