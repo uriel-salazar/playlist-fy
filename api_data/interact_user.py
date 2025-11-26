@@ -58,7 +58,7 @@ def extract_dict(playlist):
     playlist_name=playlist["playlist_name"]
     playlist_user={}
     uri_playlist=playlist["uri"]
-    
+    name_owner=playlist["owner name"]["display_name"]
     
     
     
@@ -69,9 +69,10 @@ def extract_dict(playlist):
         ###
         playlist_user[name_song]={
         "Uri playlist":uri_playlist,
-        "Artist":name_artist
+        "Artist":name_artist,
+        "owner":name_owner
             }
-    return tracks,playlist_name,playlist_user,uri_playlist
+    return tracks,playlist_name,playlist_user,uri_playlist,name_owner
 
 
 
