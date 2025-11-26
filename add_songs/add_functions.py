@@ -4,7 +4,7 @@ from wrap_playlist.playlist_function import current_playlist
 
 
 
-def wrap_songs(uri_playlist,is_public,yours):
+def wrap_songs(uri_playlist,name_user):
     """ Calls songs functions
     function for displaying the current playlists,function where shows available songs for playlist selected 
     and function for adding songs to a specific playlist 
@@ -13,15 +13,15 @@ def wrap_songs(uri_playlist,is_public,yours):
         uri_playlist (str): uri's playlist
     """
     while True:
-        sp,playlist=current_playlist()
+        sp,playlist,user_name=current_playlist()
         _,_,_,song_chosen=available(sp)
         change_song,uri_song=chosen(song_chosen)
         if change_song=="yes":
-            public=handle_error(is_public)
-            if public==False:
-                add(uri_playlist,uri_song,sp)
-            else:
-                break     
+            if name_user==user_name:
+                print("Accepted ")
+
+            add(uri_playlist,uri_song,sp)
+           
         else:
             continue
     

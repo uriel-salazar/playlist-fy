@@ -7,7 +7,6 @@ from change_playlist.change import change_playlist
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
     """
-    public=None
     value_playlist=None
     playlist_picked=False
     
@@ -20,11 +19,11 @@ def menu_playlist():
         option=verify_number("Select an option :")
         
         if option==1:
-            value_playlist,public,playlist_picked,is_playlist_user=caller_playlist()
+            value_playlist,playlist_picked,playlist_n=caller_playlist()
             playlist_picked=True
         elif option==2:
             if playlist_picked:
-                wrap_songs(value_playlist,public,is_playlist_user)
+                wrap_songs(value_playlist,playlist_n) #---
                 break
                    
             else:
@@ -35,7 +34,7 @@ def menu_playlist():
         elif option==4:
              want_change=change_playlist()
              if want_change:
-                 value_playlist,public,playlist_picked=caller_playlist()
+                 value_playlist,playlist_picked=caller_playlist()
              else:
                  print("Continuing with playlist selected ")
         else:

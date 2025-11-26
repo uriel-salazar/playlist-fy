@@ -10,15 +10,17 @@ def caller_playlist():
   """
     #loads client id and secret,converts scopes into lists
     get_spotify() 
+
     sp,playlists,user_name=current_playlist()
     #creates a dict in base on user's playlists 
     playlist_data=dict_playlist(sp,playlists)
   
     while True:
             #playlists availables 
-            tracks,playlist_name,playlist_user,uri_playlist=get_uri_playlist(playlist_data)   
+            tracks,playlist_name,playlist_user,uri_playlist,name_owner=get_uri_playlist(playlist_data)   
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
             value_playlist=uri_playlist
+            playlist_n=name_owner
             if question=="yes":
                 playlist_picked=True
             else:
@@ -30,6 +32,5 @@ def caller_playlist():
             else:
               continue
             
-            return value_playlist,playlist_picked
-    
+            return value_playlist,playlist_picked,playlist_n    
                     
