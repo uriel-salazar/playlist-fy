@@ -16,7 +16,8 @@ def menu_playlist():
         print("2. Add songs to your playlist ")
         print("3. Delete a playlist 🗑️")
         print("4. Change Playlist 🔁 ")
-        option=verify_number("Select an option :")
+        print("5. Exit 🔚")
+        option=verify_number("Select an option (1 - 4) :")
         
         if option==1:
             if playlist_picked==True:
@@ -44,8 +45,12 @@ def menu_playlist():
                  value_playlist,playlist_picked,playlist_n=caller_playlist()
              else:
                  print("Continuing with playlist selected ")
+        elif option==5:
+            print("Exit.. ")
+            break
         else:
-            pass
+            print("Please enter a valid number")
+        
         
             
             
