@@ -1,5 +1,5 @@
 
-from validate.verify_text import go_out
+from validate.verify_text import valid
 def add(playlist_uri,uri_track,sp):
     """ Adds new song to playlist 
 
@@ -104,7 +104,7 @@ def go_back():
         
         
 def go_back():
-        stop=go_out(" Exit ? (y / n) ",["y,n"])
+        stop=valid(" Exit ? (y / n) ",["y","n"])
         return stop
     
             

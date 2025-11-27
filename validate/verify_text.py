@@ -41,7 +41,7 @@ def get_letters(prompt):
 def valid(answer,accepted_words):
     """
     Accepts a word from a lisr of accepted words 
-    example : ["yes / "no" ] = valid words 
+    example : ["yes / "no" ] == valid words 
 
     Args:
     
@@ -49,11 +49,12 @@ def valid(answer,accepted_words):
         valid_words(str): Valid words in a list exampl : ["yes / "no]
     """
     #checks if the output's user is string 
-    if isinstance(answer,str):
+    if isinstance(accepted_words,str):
         accepted_words=[accepted_words]
         
-    #Convertsthe valid words into lowercase 
+    #Converts the valid words into lowercase 
     accepted_words=[word.lower() for word in accepted_words]
+    
     while True:
         option=input(answer).strip().lower()
         if option in accepted_words:

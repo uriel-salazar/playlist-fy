@@ -12,7 +12,7 @@ def menu_playlist():
     
     while True:
         print("-- Spotify playlists --")
-        print("1. Search playlist")
+        print("1. Select playlist")
         print("2. Add songs to your playlist ")
         print("3. Delete a playlist ")
         print("4. Change of Playlist")
@@ -24,7 +24,7 @@ def menu_playlist():
             playlist_picked=True
         elif option==2:
             if playlist_picked:
-                wrap_songs(value_playlist,playlist_n) #---
+                wrap_songs(value_playlist,playlist_n) 
                 break
                    
             else:
