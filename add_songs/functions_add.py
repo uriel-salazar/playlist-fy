@@ -104,7 +104,7 @@ def go_back():
         
         
 def go_back():
-        stop=valid(" Exit ? (y / n) ",["y","n"])
+        stop=valid(" Exit ? (y / n) : ",["y","n"])
         return stop
     
             
