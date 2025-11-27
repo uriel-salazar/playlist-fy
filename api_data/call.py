@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyOAuth
 from api_data.interact_user import print_playlist,extract_dict
 
 def get_spotify ():
-    """ Loads authorization variables,creates lists with scopes to read
+    """ It loads authorization variables and creates lists with scopes to read
 
     Returns:
         spotipy.Spotify: Spotify Auth
@@ -38,8 +38,10 @@ def current_playlist():
     sp=get_spotify () #spotify client object 
     user=sp.current_user()
     playlists = sp.current_user_playlists() 
+    
+    # Gets the name of the user 
     user_name=user["display_name"]
-     # gets the name of the user 
+
     return sp,playlists,user_name
 
 def dict_playlist(scope,collections):
@@ -84,6 +86,11 @@ def dict_playlist(scope,collections):
 
 
 def get_uri_playlist(playlist_data):
+    """
+    Docstring for get_uri_playlist
+    
+    :param playlist_data: Description
+    """
     selected=print_playlist(playlist_data)
     tracks,playlist_name,playlist_user,uri_playlist,name_owner=extract_dict(selected)
     return tracks,playlist_name,playlist_user,uri_playlist,name_owner

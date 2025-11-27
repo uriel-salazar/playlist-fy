@@ -19,11 +19,16 @@ def wrap_songs(uri_playlist,name_user):
         if change_song=="yes":
             if name_user==user_name:
                 add(uri_playlist,uri_song,sp)
+                go_back()
+                if go_back=="y":
+                    break
+                else:
+                    continue
             else:
                 print(" You can't modify a playlist from another user :(")
                 break
         else:
-            go_back()
+            continue
     
             
         

@@ -19,6 +19,7 @@ def menu_playlist():
         option=verify_number("Select an option :")
         
         if option==1:
+            #calls function for playlist selection 
             value_playlist,playlist_picked,playlist_n=caller_playlist()
             playlist_picked=True
         elif option==2:
