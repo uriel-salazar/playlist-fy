@@ -1,4 +1,5 @@
 
+from validate.verify_text import go_out
 def add(playlist_uri,uri_track,sp):
     """ Adds new song to playlist 
 
@@ -75,30 +76,21 @@ def select_song(i):
     
         
     
-def chosen(song):
-    """ Ask to user if want to use that song 
+def chosen(song_data):
+    """ It asks the user if they want to add the chosen song.
 
     Args:
-        song (dict): song selected by user 
+        song_data (dict): song selected by index 
 
     Returns:
      change_song (str): ("yes or no answer ")
      uri_song (str): Song's uri 
     """
-    uri_song=(song["uri"])
+    uri_song=(song_data["uri"])
     uri_song=[uri_song]
-    print(f" You chose - {song['name']} -  by  {song['artist']}")
+    print(f" You chose - {song_data['name']} -  by  {song_data['artist']}")
     change_song=input(" Add song ? (yes/no) :")
     return change_song,uri_song
-
-
-def handle_error(general):
-     if general==True:
-         print("You can't add songs to this playlist :(")
-         public=True
-     else:
-        public=False
-     return public
 
 
 def go_back():
@@ -108,9 +100,20 @@ def go_back():
             break
         else:
             pass
+        return no_stay
         
         
-
+def go_back():
+        stop=go_out(" Exit ? (y / n) ",["y,n"])
+        return stop
+    
+            
+        
+        
+            
+        
+        
+    
 
 
         
