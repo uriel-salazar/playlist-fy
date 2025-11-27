@@ -1,4 +1,4 @@
-from validate.verify_text import get_letters,verify_number
+from validate.verify_text import get_letters,verify_number,valid
 
 def print_playlist(data):
     """
@@ -110,11 +110,11 @@ def overview_logic(songs,name_playlist,dict_setlist):
             print("No more songs.")
             break
         
-        more = input("Show more songs? (y/n): ").lower()
+        more = valid("Show more songs? (y/n): ",["y","n"])
         if more != "y":
             break
 
-    question = input("Are you going to use this playlist? (yes/no):").lower()
+    question = valid("Are you going to use this playlist? (y/n):",["y","n"])
     if question == "yes":
         
         print(f" You selected '{name_playlist}' as your playlist !")
