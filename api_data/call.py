@@ -1,3 +1,4 @@
+import webbrowser 
 import os
 import spotipy
 from dotenv import load_dotenv
@@ -17,15 +18,24 @@ def get_spotify ():
         "playlist-modify-public",
     ]
    
-    return spotipy.Spotify(
-        auth_manager=SpotifyOAuth(
-            client_id=os.getenv("SPOTIPY_CLIENT_ID"),
-            client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
-            redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
-            scope=" ".join(scopes)
-            
-        )
+    cache_file = ".cache" 
+    auth_manager = SpotifyOAuth(
+        client_id=os.getenv("SPOTIPY_CLIENT_ID"),
+        client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
+        redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
+        scope=" ".join(scopes),
+        cache_path=cache_file
     )
+
+    # If cache doesn't exist yet
+    if not os.path.exists(cache_file):
+        login_url = auth_manager.get_authorize_url()
+        webbrowser.open(login_url)
+        print("Spotify login URL opened in your browser!")
+
+    return spotipy.Spotify(auth_manager=auth_manager)
+    
+    
     
     
 def current_playlist():
