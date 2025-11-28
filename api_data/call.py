@@ -18,20 +18,20 @@ def get_spotify ():
         "playlist-modify-public",
     ]
    
-    cache_file = ".cache" 
     auth_manager = SpotifyOAuth(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
         client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
         scope=" ".join(scopes),
-        cache_path=cache_file
+        cache_path=".cache",
+        show_dialog=True
+      
     )
-
     # If cache doesn't exist yet
-    if not os.path.exists(cache_file):
-        login_url = auth_manager.get_authorize_url()
-        webbrowser.open(login_url)
-        print("Spotify login URL opened in your browser!")
+
+    login_url = auth_manager.get_authorize_url()
+    webbrowser.open(login_url)
+    print("Spotify login URL opened in your browser!")
 
     return spotipy.Spotify(auth_manager=auth_manager)
     
@@ -45,7 +45,8 @@ def current_playlist():
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
-    sp=get_spotify () #spotify client object 
+    sp=get_spotify()
+    #spotify client object 
     user=sp.current_user()
     playlists = sp.current_user_playlists() 
     

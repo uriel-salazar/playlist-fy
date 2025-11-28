@@ -1,6 +1,6 @@
 from api_data.call import get_spotify,current_playlist,dict_playlist,get_uri_playlist
 from api_data.interact_user import overview_logic
-
+from OAuth.functions_oauth import generate_codes
 def caller_playlist():
     """ Calls functions for knowning the playlist selected 
   If the user doesn't choose any playlist is going to ask if wants to choose another one.
@@ -8,8 +8,8 @@ def caller_playlist():
   value_playlist (str): uri's playlist 
    
   """
+    _,code_challenge=generate_codes()
     #loads client id and secret,converts scopes into lists
-    get_spotify() 
 
     sp,playlists,user_name=current_playlist()
     #creates a dict in base on user's playlists 
