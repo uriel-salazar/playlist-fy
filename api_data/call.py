@@ -23,17 +23,23 @@ def get_spotify ():
         client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
         scope=" ".join(scopes),
+        show_dialog=True,
         cache_path=".cache",
-        show_dialog=True
       
-    )
+    )  
     # If cache doesn't exist yet
-
-    login_url = auth_manager.get_authorize_url()
-    webbrowser.open(login_url)
-    print("Spotify login URL opened in your browser!")
-
-    return spotipy.Spotify(auth_manager=auth_manager)
+    
+    while True:
+        
+        login_url = auth_manager.get_authorize_url()
+        webbrowser.open(login_url)
+        print("Spotify login URL opened in your browser!")
+        if spotipy.exceptions.SpotifyOauthError:
+            print("Please, accept the terms to continue")
+            pass
+        else:
+            break
+        return spotipy.Spotify(auth_manager=auth_manager)
     
     
     
