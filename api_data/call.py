@@ -28,20 +28,27 @@ def get_spotify ():
       
     )  
     # If cache doesn't exist yet
-    
-    while True:
-        
-        login_url = auth_manager.get_authorize_url()
-        webbrowser.open(login_url)
-        print("Spotify login URL opened in your browser!")
-        if spotipy.exceptions.SpotifyOauthError:
-            print("Please, accept the terms to continue")
-            pass
+    try:
+        got_token=auth_manager.get_cached_token()
+        if got_token:
+             return spotipy.SpotifyOAuth(auth_manager=auth_manager)
         else:
-            break
-        return spotipy.Spotify(auth_manager=auth_manager)
-    
-    
+            login_url = auth_manager.get_authorize_url()
+            print("Opening Spotify login in your browser...")
+            webbrowser.open(login_url)
+            got_token = auth_manager.get_access_token(as_dict=True)
+        
+            if got_token:
+                print()
+    except spotipy.exceptions.SpotifyOauthError as flaw:
+           raise Exception(f" Failed to get access token {flaw}")
+            
+    if auth_manager.get_cached_token():
+        print("Succesfull")
+        return spotipy.SpotifyOAuth(auth_manager=auth_manager)
+    else:
+        raise 
+  
     
     
 def current_playlist():
