@@ -31,7 +31,7 @@ def get_spotify ():
     try:
         got_token=auth_manager.get_cached_token()
         if got_token:
-             return spotipy.SpotifyOAuth(auth_manager=auth_manager)
+             return spotipy.Spotify(auth_manager=auth_manager)
         else:
             login_url = auth_manager.get_authorize_url()
             print("Opening Spotify login in your browser...")
@@ -39,16 +39,16 @@ def get_spotify ():
             got_token = auth_manager.get_access_token(as_dict=True)
         
             if got_token:
-                print()
+                print("Succesfull authenticated")
+                return spotipy.Spotify(auth_manager=auth_manager)
+            else:
+                raise Exception("Failed to get access token ")
+            
     except spotipy.exceptions.SpotifyOauthError as flaw:
            raise Exception(f" Failed to get access token {flaw}")
+           
+       
             
-    if auth_manager.get_cached_token():
-        print("Succesfull")
-        return spotipy.SpotifyOAuth(auth_manager=auth_manager)
-    else:
-        raise 
-  
     
     
 def current_playlist():
