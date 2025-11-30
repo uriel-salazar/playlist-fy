@@ -26,30 +26,32 @@ def get_spotify ():
         show_dialog=True,
         cache_path=".cache",
       
-    )  
-    # If cache doesn't exist yet
+    ) 
+    return auth_manager
+   
+   
+    
+def log_in(auth):
     try:
-        got_token=auth_manager.get_cached_token()
+        got_token=auth.get_cached_token()
         if got_token:
-             return spotipy.Spotify(auth_manager=auth_manager)
+             return spotipy.Spotify(auth_manager=auth)
         else:
-            login_url = auth_manager.get_authorize_url()
+            login_url = auth.get_authorize_url()
             print("Opening Spotify login in your browser...")
             webbrowser.open(login_url)
-            got_token = auth_manager.get_access_token(as_dict=True)
+            got_token = auth.get_access_token(as_dict=True)
         
             if got_token:
                 print("Succesfull authenticated")
-                return spotipy.Spotify(auth_manager=auth_manager)
+                return spotipy.Spotify(auth_manager=auth)
             else:
                 raise Exception("Failed to get access token ")
             
     except spotipy.exceptions.SpotifyOauthError as flaw:
-           raise Exception(f" Failed to get access token {flaw}")
-           
-       
-            
-    
+            print("Unsuccesfull attemot to get accces ")
+        
+        
     
 def current_playlist():
     """  Gets the current user's available Spotify playlists.
@@ -58,7 +60,9 @@ def current_playlist():
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
-    sp=get_spotify()
+    auth_manager=get_spotify()
+    sp=log_in(auth_manager)
+    
     #spotify client object 
     user=sp.current_user()
     playlists = sp.current_user_playlists() 
