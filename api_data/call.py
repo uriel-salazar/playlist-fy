@@ -32,26 +32,28 @@ def get_spotify ():
    
     
 def log_in(auth):
-    try:
-        got_token=auth.get_cached_token()
-        if got_token:
-             return spotipy.Spotify(auth_manager=auth)
-        else:
+    token_info = auth.get_cached_token()
+    if token_info:
+        print("Successful authentication with cached token!")
+        return spotipy.Spotify(auth_manager=auth)
+    
+    # If no cached token, authenticate via browser
+    while True:
+        try:
             login_url = auth.get_authorize_url()
             print("Opening Spotify login in your browser...")
             webbrowser.open(login_url)
-            got_token = auth.get_access_token(as_dict=True)
-        
-            if got_token:
-                print("Succesfull authenticated")
+
+            # Wait for user to complete authentication
+            token_info = auth.get_access_token(as_dict=True)
+            if token_info:
+                print("Successful authentication!")
                 return spotipy.Spotify(auth_manager=auth)
-            else:
-                raise Exception("Failed to get access token ")
             
-    except spotipy.exceptions.SpotifyOauthError as flaw:
-            print("Unsuccesfull attemot to get accces ")
-        
-        
+        except Exception as e:
+            print("Error during authentication:", e)
+            print("Retrying...")
+            
     
 def current_playlist():
     """  Gets the current user's available Spotify playlists.
