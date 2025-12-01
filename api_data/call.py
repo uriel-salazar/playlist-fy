@@ -4,6 +4,7 @@ import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
 from api_data.interact_user import print_playlist,extract_dict
+from validate import verify_text
 
 def get_spotify ():
     """ It loads authorization variables and creates lists with scopes to read
@@ -38,24 +39,31 @@ def log_in(auth):
         return spotipy.Spotify(auth_manager=auth)
     
     # If no cached token, authenticate via browser
-    while True:
-        try:
+    while True :
             login_url = auth.get_authorize_url()
             print("Opening Spotify login in your browser...")
             webbrowser.open(login_url)
-
-            # Wait for user to complete authentication
-            token_info = auth.get_access_token(as_dict=True)
-            if token_info:
-                print("Successful authentication!")
-                return spotipy.Spotify(auth_manager=auth)
+            try:
+                token_info = auth.get_access_token(as_dict=True)
+                if token_info:
+                    print("Successful authentication!")
+                    return spotipy.Spotify(auth_manager=auth)
+                if token_info==None:
+                    print(" ⚠️ Login wasn't completed")
+                    again=verify_text("Try again? (y / n )",["y","n"])
+                    if again!="y":
+                        return None
+        
+            except spotipy.SpotifyOauthError:
+                print("Login canceled")
+                return None
             
-        except Exception as e:
-            print("Error during authentication:", e)
-            print("Retrying...")
+            except Exception as e:
+                print("Error during authentication:", e)
+                return None
             
     
-def current_playlist():
+def current_playlist(): 
     """  Gets the current user's available Spotify playlists.
 
     Returns:
