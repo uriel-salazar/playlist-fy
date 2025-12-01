@@ -1,4 +1,4 @@
-from api_data.call import get_spotify,current_playlist,dict_playlist,get_uri_playlist
+from api_data.call import current_playlist,dict_playlist,get_uri_playlist
 from api_data.interact_user import overview_logic
 from OAuth.functions_oauth import generate_codes
 def caller_playlist():
