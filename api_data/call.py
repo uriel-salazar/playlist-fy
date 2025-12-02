@@ -4,7 +4,6 @@ import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
 from api_data.interact_user import print_playlist,extract_dict
-from validate import verify_text
 
 def get_spotify ():
     """ It loads authorization variables and creates lists with scopes to read
@@ -31,7 +30,6 @@ def get_spotify ():
     return auth_manager
    
    
-    
 def log_in(auth):
     token_info = auth.get_cached_token()
     if token_info:
@@ -44,18 +42,16 @@ def log_in(auth):
             login_url = auth.get_authorize_url()
             print("Opening Spotify login in your browser...")
             webbrowser.open(login_url)
-            try:
-                token_info = auth.get_access_token(as_dict=True)
-                if token_info:
-                    print("Successful authentication!")
-                    return spotipy.Spotify(auth_manager=auth)
+            input("Press Enter after logging in...")
         
-            except spotipy.SpotifyOauthError:
+            token_info = auth.get_access_token()
+            if token_info:
+                print("Successful authentication!")
+                return spotipy.Spotify(auth_manager=auth)
+            else:
                 print("Login canceled")
                 return None
-            except Exception as e:
-                print("Error during authentication:", e)
-                return None
+
             
     
 def current_playlist(): 
@@ -67,15 +63,14 @@ def current_playlist():
     """
     auth_manager=get_spotify()
     sp=log_in(auth_manager)
-    while True:
-        if sp==None:
+    while sp is None:
             print("Error at accepting spotify terms, please try again..")
             log_in(auth_manager)
-        else:
-            user=sp.current_user()
-            playlists = sp.current_user_playlists() 
-            user_name=user["display_name"]
-            return sp,playlists,user_name
+            
+    user=sp.current_user()
+    playlists = sp.current_user_playlists() 
+    user_name=user["display_name"]
+    return sp,playlists,user_name
 
 def dict_playlist(scope,collections):
     """ Creates a dict for extracting each data from each playlist
