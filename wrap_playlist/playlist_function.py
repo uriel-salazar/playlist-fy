@@ -24,12 +24,12 @@ def caller_playlist():
             if question=="y":
                 playlist_picked=True
                 print(f"Playlist - {playlist_name}- selected !")
-                
-            again=input("Search another playlist? (y / n):")
-            if again!="y": 
-              pass
             else:
-              continue
+              again=input("Search another playlist? (y / n):")
+              if again!="y": 
+               pass
+              else:
+               continue
             
             return value_playlist,playlist_picked,playlist_n    
                     
