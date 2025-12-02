@@ -21,11 +21,10 @@ def caller_playlist():
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
             value_playlist=uri_playlist
             playlist_n=name_owner
-            if question=="yes":
+            if question=="y":
                 playlist_picked=True
-            else:
-                playlist_picked=False
-  
+                print(f"Playlist - {playlist_name}- selected !")
+                
             again=input("Search another playlist? (y / n):")
             if again!="y": 
               pass
