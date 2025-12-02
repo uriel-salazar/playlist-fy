@@ -38,8 +38,9 @@ def log_in(auth):
         print("Successful authentication with cached token!")
         return spotipy.Spotify(auth_manager=auth)
     
+
     # If no cached token, authenticate via browser
-    while True :
+    while True:
             login_url = auth.get_authorize_url()
             print("Opening Spotify login in your browser...")
             webbrowser.open(login_url)
@@ -48,16 +49,10 @@ def log_in(auth):
                 if token_info:
                     print("Successful authentication!")
                     return spotipy.Spotify(auth_manager=auth)
-                if token_info==None:
-                    print(" ⚠️ Login wasn't completed")
-                    again=verify_text("Try again? (y / n )",["y","n"])
-                    if again!="y":
-                        return None
         
             except spotipy.SpotifyOauthError:
                 print("Login canceled")
                 return None
-            
             except Exception as e:
                 print("Error during authentication:", e)
                 return None
@@ -72,15 +67,15 @@ def current_playlist():
     """
     auth_manager=get_spotify()
     sp=log_in(auth_manager)
-    
-    #spotify client object 
-    user=sp.current_user()
-    playlists = sp.current_user_playlists() 
-    
-    # Gets the name of the user 
-    user_name=user["display_name"]
-
-    return sp,playlists,user_name
+    while True:
+        if sp==None:
+            print("Error at accepting spotify terms, please try again..")
+            log_in(auth_manager)
+        else:
+            user=sp.current_user()
+            playlists = sp.current_user_playlists() 
+            user_name=user["display_name"]
+            return sp,playlists,user_name
 
 def dict_playlist(scope,collections):
     """ Creates a dict for extracting each data from each playlist
