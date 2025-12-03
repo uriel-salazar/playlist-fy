@@ -1,8 +1,9 @@
 from wrap_playlist.playlist_function import caller_playlist
 from validate.verify_text import verify_number
 from add_songs.add_functions import wrap_songs
-from eliminate_playlist.erase import eliminate
+from eliminate_playlist.erase import wipe_out
 from change_playlist.change import change_playlist
+import time
 
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
@@ -37,7 +38,7 @@ def menu_playlist():
                 print("First you must enter your playlist.")
         elif option==3:
                 print("-- Delete Playlist -- ") 
-                eliminate()
+                wipe_out()
         elif option==4:
              want_change=change_playlist()
              if want_change:
@@ -47,6 +48,7 @@ def menu_playlist():
                  print("Continuing with playlist selected ")
         elif option==5:
             print("Exit.. ")
+            time.sleep(3)
             break
         else:
             print("Please enter a valid number")

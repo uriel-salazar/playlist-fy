@@ -33,7 +33,6 @@ def get_spotify ():
 def log_in(auth):
     token_info = auth.get_cached_token()
     if token_info:
-        print("Successful authentication with cached token!")
         return spotipy.Spotify(auth_manager=auth)
     
 
