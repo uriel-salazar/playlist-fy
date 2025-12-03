@@ -1,6 +1,6 @@
 from playlist_control.playlist  import menu_playlist
 from validate.verify_text import verify_number
-from user_top.artist import top_artist
+from user_top.menu_top import select_top
 def head():
     """ MAIN MENU
     """
@@ -13,7 +13,7 @@ def head():
             menu_playlist()
             
         elif option==2:
-             top_artist()
+             select_top()
         else:
             pass
             
