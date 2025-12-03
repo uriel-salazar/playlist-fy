@@ -1,7 +1,7 @@
-from menu.menu_main import head
+from menu.menu_main import head_playlistfy
 
 def main():
-    head()
+    head_playlistfy()
         
 if __name__ == "__main__":
     main()

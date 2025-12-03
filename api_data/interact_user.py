@@ -1,4 +1,4 @@
-from validate.verify_text import get_letters,verify_number,valid
+from validate.verify_text import get_letters,verify_number,valid_words
 
 def print_playlist(data):
     """
@@ -72,7 +72,7 @@ def extract_dict(playlist):
     return tracks,playlist_name,playlist_user,uri_playlist,name_owner
 
 
-def overview_show(artist_n,song_n):
+def overview_song(artist_n,song_n):
     """ Prints only 5 songs from the playlist 
     - connected to overview_logic function -
 
@@ -102,7 +102,7 @@ def overview_logic(songs,name_playlist,dict_setlist):
     while start < len(songs):
         end = start + batch_size
         for item in songs[start:end]:
-            overview_show(item["track_name"],item["artist"])
+            overview_song(item["track_name"],item["artist"])
              
         start += batch_size
 
@@ -110,11 +110,11 @@ def overview_logic(songs,name_playlist,dict_setlist):
             print("No more songs.")
             break
         
-        more = valid("Show more songs? (y/n): ",["y","n"])
+        more = valid_words("Show more songs? (y/n): ",["y","n"])
         if more != "y":
             break
 
-    question = valid("Are you going to use this playlist? (y/n):",["y","n"])
+    question = valid_words("Are you going to use this playlist? (y/n):",["y","n"])
     if question == "y":
         return dict_setlist, question
     else:

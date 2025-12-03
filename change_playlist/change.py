@@ -1,7 +1,7 @@
-from validate.verify_text import valid
+from validate.verify_text import valid_words
 def change_playlist():
     while True:
-        answer=valid("Do you want to change of playlist?? (y / n )",["y",])
+        answer=valid_words("Do you want to change of playlist?? (y / n )",["y",])
         if answer=="y":
            return True
         elif answer=="n":

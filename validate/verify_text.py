@@ -38,7 +38,7 @@ def get_letters(prompt):
         else:
             print("❌ Only letters allowed.Please try again.")
     
-def valid(answer,accepted_words):
+def valid_words(answer,accepted_words):
     """
     Accepts a word from a lisr of accepted words 
     example : ["yes / "no" ] == valid words 
