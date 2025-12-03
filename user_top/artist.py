@@ -1,6 +1,6 @@
 from api_data.call import current_playlist
 def top_artist():
-    """ Prints User's top artist in a list (10)
+    """ Displays  User's top artist in a list (10)
     (medium term top )
     """               
     sp,_,_=current_playlist()
