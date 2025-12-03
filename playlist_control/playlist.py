@@ -18,7 +18,7 @@ def menu_playlist():
         print("3. Delete a playlist 🗑️")
         print("4. Change Playlist 🔁 ")
         print("5. Exit 🔚")
-        option=verify_number("Select an option (1 - 4) :")
+        option=verify_number("Select an option (1 - 5) :")
         
         if option==1:
             if playlist_picked==True:

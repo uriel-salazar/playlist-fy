@@ -6,8 +6,8 @@ def wipe_out():
     while True:
         sp,playlists,user_name=current_playlist()
         playlist_data=dict_playlist(sp,playlists)
-        tracks,playlist_name,playlist_user,uri_playlist,name_owner=get_uri_playlist(playlist_data)   
-        dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
+        tracks,playlist_name,playlist_user,uri_playlist,_=get_uri_playlist(playlist_data)   
+        _,_=overview_logic(tracks,playlist_name,playlist_user)
         ask_unfollow=input(f"Eliminate {playlist_name} from your library? ( y / n )")
         if ask_unfollow=="y":
             sp.current_user_unfollow_playlist(uri_playlist)
