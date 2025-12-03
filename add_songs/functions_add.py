@@ -1,5 +1,5 @@
 
-from validate.verify_text import valid
+from validate.verify_text import valid_words
 def add(playlist_uri,uri_track,sp):
     """ Adds new song to playlist 
 
@@ -13,7 +13,7 @@ def add(playlist_uri,uri_track,sp):
     
 
 
-def available(sp):
+def available_songs(sp):
     """ Gets available songs from search 
     Creates a dict from the available songs (name of the song,artist and uri)
 
@@ -76,7 +76,7 @@ def select_song(i):
     
         
     
-def chosen(song_data):
+def chosen_song(song_data):
     """ It asks the user if they want to add the chosen song.
 
     Args:
@@ -93,18 +93,9 @@ def chosen(song_data):
     return change_song,uri_song
 
 
-def go_back():
-    while True:
-        no_stay=input("for exit, press 'out' ")
-        if no_stay=="out":
-            break
-        else:
-            pass
-        return no_stay
-        
         
 def go_back():
-        stop=valid(" Exit ? (y / n) : ",["y","n"])
+        stop=valid_words(" Exit ? (y / n) : ",["y","n"])
         return stop
     
             

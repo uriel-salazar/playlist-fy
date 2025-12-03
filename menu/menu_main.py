@@ -1,7 +1,7 @@
 from playlist_control.playlist  import menu_playlist
 from validate.verify_text import verify_number
 from user_top.menu_top import select_top
-def head():
+def head_playlistfy():
     """ MAIN MENU
     """
     while True:
