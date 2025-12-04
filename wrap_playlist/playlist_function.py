@@ -12,10 +12,12 @@ def caller_playlist():
     #loads client id and secret,converts scopes into lists
 
     sp,playlists,user_name=current_playlist()
-    #creates a dict in base on user's playlists 
-    playlist_data=dict_playlist(sp,playlists)
-  
     while True:
+      if sp==None:
+        return None
+      else:
+        playlist_data=dict_playlist(sp,playlists)
+      while True:
             #playlists availables 
             tracks,playlist_name,playlist_user,uri_playlist,name_owner=get_uri_playlist(playlist_data)   
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)

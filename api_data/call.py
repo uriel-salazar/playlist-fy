@@ -27,32 +27,40 @@ def get_spotify ():
         cache_path=".cache",
       
     ) 
+
     return auth_manager
+
    
    
+
 def log_in(auth):
     token_info = auth.get_cached_token()
     if token_info:
         return spotipy.Spotify(auth_manager=auth)
-    
-
-    # If no cached token, authenticate via browser
     while True:
-            login_url = auth.get_authorize_url()
-            print("Opening Spotify login in your browser...")
-            webbrowser.open(login_url)
-            input("Press Enter after logging in...")
-        
-            token_info = auth.get_access_token()
+    
+        login_url = auth.get_authorize_url()
+        print("Opening Spotify login in your browser...")
+        webbrowser.open(login_url)
+    
+        try:
+            token_info = auth.get_access_token(as_dict=True)
             if token_info:
                 print("Successful authentication!")
                 return spotipy.Spotify(auth_manager=auth)
             else:
-                print("Login canceled")
-                return None
-
-            
+                print("Authentication failed")
+                break
     
+        except spotipy.SpotifyOauthError:
+            print("Login canceled")
+            return None
+    
+        except Exception as e:
+            print("Error during authentication:", e)
+            return None
+
+
 def current_playlist(): 
     """  Gets the current user's available Spotify playlists.
 
@@ -60,16 +68,24 @@ def current_playlist():
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
-    auth_manager=get_spotify()
-    sp=log_in(auth_manager)
-    while sp is None:
-            print("Error at accepting spotify terms, please try again..")
-            log_in(auth_manager)
-            
-    user=sp.current_user()
-    playlists = sp.current_user_playlists() 
-    user_name=user["display_name"]
-    return sp,playlists,user_name
+    sp=validate_user()
+    if sp==None:
+        return None,None,None
+    else:
+            user=sp.current_user()
+            playlists = sp.current_user_playlists() 
+            user_name=user["display_name"]
+            return sp,playlists,user_name
+      
+def validate_user():
+    while True:
+        auth_manager=get_spotify()
+        sp=log_in(auth_manager)
+        if sp==None:
+            break
+        else:
+            return sp
+    
 
 def dict_playlist(scope,collections):
     """ Creates a dict for extracting each data from each playlist
