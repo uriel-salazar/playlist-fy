@@ -47,7 +47,7 @@ def menu_playlist():
              else:
                  print("Continuing with playlist selected ")
         elif option==5:
-            print("Exit.. ")
+            print("Exiting .. ")
             time.sleep(3)
             break
         else:
