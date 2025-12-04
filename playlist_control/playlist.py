@@ -28,6 +28,9 @@ def menu_playlist():
             else:
                 #calls function for playlist selection 
                 value_playlist,playlist_picked,playlist_n=caller_playlist()
+                if caller_playlist==None:
+                    playlist_picked=False
+                    break
                 playlist_picked=True
     
         elif option==2:
