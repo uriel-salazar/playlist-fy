@@ -15,6 +15,7 @@ def head_playlistfy():
         elif option==2:
              select_top()
         else:
-            pass
+            print("Please select a valid option")
+            
             
         
