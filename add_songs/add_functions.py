@@ -16,7 +16,7 @@ def wrap_songs(uri_playlist,name_user):
         sp,_,user_name=current_playlist()
         _,_,_,song_chosen=available_songs(sp)
         change_song,uri_song=chosen_song(song_chosen)
-        if change_song=="yes":
+        if change_song=="y":
             if name_user==user_name:
                 add(uri_playlist,uri_song,sp)
                 stop=go_back()

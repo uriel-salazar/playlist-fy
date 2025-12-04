@@ -13,8 +13,8 @@ def menu_playlist():
     
     while True:
         print("-- Your Spotify playlists   --")
-        print("1. Select playlist")
-        print("2. Add songs to your playlist ")
+        print("1. Select playlist 🎵 ")
+        print("2. Add songs to your playlist ✍️ ")
         print("3. Delete a playlist 🗑️")
         print("4. Change Playlist 🔁 ")
         print("5. Exit 🔚")
@@ -22,8 +22,8 @@ def menu_playlist():
         
         if option==1:
             if playlist_picked==True:
-                print(""" If you want change of playlist, 
-                - select option 4 (Change playlist) -
+                print("""⚠️ If you want change of playlist, 
+                        - select option 4 (Change playlist) ⚠️ -
                       """)
             else:
                 #calls function for playlist selection 
@@ -35,7 +35,7 @@ def menu_playlist():
                 wrap_songs(value_playlist,playlist_n) 
                    
             else:
-                print("First you must enter your playlist.")
+                print("First, you must enter your playlist.")
         elif option==3:
                 print("-- Delete Playlist -- ") 
                 wipe_out()

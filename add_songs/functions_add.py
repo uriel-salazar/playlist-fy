@@ -89,7 +89,7 @@ def chosen_song(song_data):
     uri_song=(song_data["uri"])
     uri_song=[uri_song]
     print(f" You chose - {song_data['name']} -  by  {song_data['artist']}")
-    change_song=input(" Add song ? (yes/no) :")
+    change_song=input(" Add song ? (y/n) :")
     return change_song,uri_song
 
 

@@ -12,7 +12,7 @@ def wipe_out():
         if ask_unfollow=="y":
             sp.current_user_unfollow_playlist(uri_playlist)
             eliminate=True
-            print("Playlist unfollowed ! ")
+            print("Playlist unfollowed ! 🗑️")
         else:
             continue
         return eliminate
