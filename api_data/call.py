@@ -4,7 +4,7 @@ import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
 from api_data.interact_user import print_playlist,extract_dict
-
+import sys
 def get_spotify ():
     """ It loads authorization variables and creates lists with scopes to read
 
@@ -69,22 +69,23 @@ def current_playlist():
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
     sp=validate_user()
-    if sp==None:
-        return None,None,None
+    if sp is None:
+        return None
     else:
-            user=sp.current_user()
-            playlists = sp.current_user_playlists() 
-            user_name=user["display_name"]
-            return sp,playlists,user_name
+        user=sp.current_user()
+        playlists = sp.current_user_playlists() 
+        user_name=user["display_name"]
+        return sp,playlists,user_name
       
 def validate_user():
     while True:
         auth_manager=get_spotify()
         sp=log_in(auth_manager)
         if sp==None:
-            break
+            return
         else:
-            return sp
+            pass
+        return sp
     
 
 def dict_playlist(scope,collections):
