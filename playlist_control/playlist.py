@@ -26,10 +26,9 @@ def menu_playlist():
                         - select option 4 (Change playlist) ⚠️ -
                       """)
             else:
-                #calls function for playlist selection 
-                value_playlist,playlist_picked,playlist_n=caller_playlist()
-                if caller_playlist==None:
-                    playlist_picked=False
+                #calls function for playlist selection  
+                value_playlist,playlist_picked,playlist_n,validated=caller_playlist()
+                if validated==False:
                     break
                 playlist_picked=True
     

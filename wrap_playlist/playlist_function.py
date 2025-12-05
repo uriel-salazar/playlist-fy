@@ -12,12 +12,11 @@ def caller_playlist():
     #loads client id and secret,converts scopes into lists
 
     sp,playlists,user_name=current_playlist()
+    if sp is None:
+      return None
+    
+    playlist_data=dict_playlist(sp,playlists)
     while True:
-      if sp==None:
-        return None
-      else:
-        playlist_data=dict_playlist(sp,playlists)
-      while True:
             #playlists availables 
             tracks,playlist_name,playlist_user,uri_playlist,name_owner=get_uri_playlist(playlist_data)   
             dict_sectlist,question=overview_logic(tracks,playlist_name,playlist_user)
@@ -29,9 +28,7 @@ def caller_playlist():
             else:
               again=input("Search another playlist? (y / n):")
               if again!="y": 
-               pass
-              else:
-               continue
-            
-            return value_playlist,playlist_picked,playlist_n    
+                validated=True
+        
+            return value_playlist,playlist_picked,playlist_n,validated  
                     
