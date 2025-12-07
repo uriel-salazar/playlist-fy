@@ -27,10 +27,11 @@ def menu_playlist():
                       """)
             else:
                 #calls function for playlist selection  
-                value_playlist,playlist_picked,playlist_n,validated=caller_playlist()
-                if validated==False:
+                value_playlist,playlist_picked,playlist_n=caller_playlist()
+                if value_playlist is None:
                     break
-                playlist_picked=True
+                else:
+                    playlist_picked=True
     
         elif option==2:
             if playlist_picked:

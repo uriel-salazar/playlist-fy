@@ -20,11 +20,11 @@ def get_spotify ():
    
     auth_manager = SpotifyOAuth(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
-        client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
         scope=" ".join(scopes),
         show_dialog=True,
         cache_path=".cache",
+        open_browser=True,
       
     ) 
 
@@ -34,6 +34,7 @@ def get_spotify ():
    
 
 def log_in(auth):
+    print(id(auth)) 
     token_info = auth.get_cached_token()
     if token_info:
         return spotipy.Spotify(auth_manager=auth)
@@ -70,7 +71,7 @@ def current_playlist():
     """
     sp=validate_user()
     if sp is None:
-        return None
+        return None,None,None
     else:
         user=sp.current_user()
         playlists = sp.current_user_playlists() 
