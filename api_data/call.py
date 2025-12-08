@@ -2,9 +2,10 @@ import webbrowser
 import os
 import spotipy
 from dotenv import load_dotenv
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyPKCE
 from api_data.interact_user import print_playlist,extract_dict
-import sys
+
+
 def get_spotify ():
     """ It loads authorization variables and creates lists with scopes to read
 
@@ -18,48 +19,28 @@ def get_spotify ():
         "playlist-modify-public",
     ]
    
-    auth_manager = SpotifyOAuth(
+    auth_manager = SpotifyPKCE(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
         scope=" ".join(scopes),
-        show_dialog=True,
-        cache_path=".cache",
-        open_browser=True,
-      
-    ) 
-
-    return auth_manager
+        open_browser=True,   
+    )
+    sp = spotipy.Spotify(auth_manager=auth_manager)
+    return sp
 
    
    
 
-def log_in(auth):
-    print(id(auth)) 
-    token_info = auth.get_cached_token()
-    if token_info:
-        return spotipy.Spotify(auth_manager=auth)
-    while True:
-    
-        login_url = auth.get_authorize_url()
-        print("Opening Spotify login in your browser...")
-        webbrowser.open(login_url)
-    
-        try:
-            token_info = auth.get_access_token(as_dict=True)
-            if token_info:
-                print("Successful authentication!")
-                return spotipy.Spotify(auth_manager=auth)
-            else:
-                print("Authentication failed")
-                break
-    
-        except spotipy.SpotifyOauthError:
-            print("Login canceled")
-            return None
-    
-        except Exception as e:
-            print("Error during authentication:", e)
-            return None
+def log_in():
+    sp = get_spotify()
+    try:
+        current_user = sp.current_user()
+        print(f"Logged in as: {current_user['display_name']}")
+        return sp
+    except Exception as e:
+        print("Login failed:", e)
+        return None
+
 
 
 def current_playlist(): 
@@ -80,8 +61,8 @@ def current_playlist():
       
 def validate_user():
     while True:
-        auth_manager=get_spotify()
-        sp=log_in(auth_manager)
+        get_spotify()
+        sp=log_in()
         if sp==None:
             return
         else:
