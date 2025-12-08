@@ -1,6 +1,6 @@
 from api_data.call import current_playlist,dict_playlist,get_uri_playlist
 from api_data.interact_user import overview_logic
-from OAuth.functions_oauth import generate_codes
+
 
 def caller_playlist():
     """
@@ -12,7 +12,6 @@ def caller_playlist():
         playlist_picked (bool)
         playlist_n (str): owner name
     """
-    _, code_challenge = generate_codes()
 
     sp, playlists,user_name = current_playlist()
     if sp is None:
