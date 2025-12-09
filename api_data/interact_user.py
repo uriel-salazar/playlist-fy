@@ -3,9 +3,14 @@ from validate.verify_text import get_letters,verify_number,valid_words
 def print_playlist(data):
     """
     Ask to user their playlist to work on 
-
+    
+    * Prints public playlists and private ones.
+    Shows a determined number of playlist at the beginning (5)
+    and if user wants to see the whole list, there's an input selection :
+    
+    (See more playlists? yes / no)
     Args:
-        data (dict) : Dictionary from RAW AI response
+        data (dict) : Dictionary from RAW json response 
 
     Returns:
     select()
@@ -20,7 +25,7 @@ def print_playlist(data):
             
         more=get_letters("See more playlist ? yes /no : ").lower()
 
-        
+        #If there are more songs and the answer is yes,prints the entire playlists list.
         if more == "yes" and len(data) > limit:
             print("\n All playlists :")
             for i, playlist in enumerate(data, start=1):
@@ -32,7 +37,7 @@ def print_playlist(data):
         choice =verify_number("Please select an opcion :")
         
         select=data[choice-1]
-
+    
         if 1 <= choice <= len(data):
             return select
         else:
@@ -40,7 +45,7 @@ def print_playlist(data):
 
 
 def extract_dict(playlist):
-    """ Creates dict of playlist selected 
+    """ Creates dictionary of playlist selected by user.
 
     Args:
         playlist (dict): User's playlist selected 
@@ -63,7 +68,7 @@ def extract_dict(playlist):
         name_song=i["track_name"]
         name_artist=i["artist"]
         
-        ###
+
         playlist_user[name_song]={
         "Uri playlist":uri_playlist,
         "Artist":name_artist,
