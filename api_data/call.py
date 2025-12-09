@@ -13,9 +13,10 @@ def get_spotify ():
     """
     load_dotenv()
     scopes=[
+        "user-top-read",
         "playlist-read-private",
         "playlist-modify-private",
-        "playlist-modify-public",
+        "playlist-modify-public"  
     ]
 
 
