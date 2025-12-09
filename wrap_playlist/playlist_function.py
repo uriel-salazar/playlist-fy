@@ -34,7 +34,7 @@ def caller_playlist():
         again = input("Search another playlist? (y / n): ")
 
         if again.lower() != "y":
-            # user doesn't want to search more playlists
+            # if user doesn't want to search more playlists
             playlist_picked = False
             return value_playlist, playlist_picked, playlist_n
                     
