@@ -7,13 +7,13 @@ def print_playlist(data):
     * Prints public playlists and private ones.
     Shows a determined number of playlist at the beginning (5)
     and if user wants to see the whole list, there's an input selection :
-    
+    Example: 
     (See more playlists? yes / no)
     Args:
         data (dict) : Dictionary from RAW json response 
 
     Returns:
-    select()
+        select():
     """
     limit = 5
 
@@ -56,7 +56,7 @@ def extract_dict(playlist):
         - playlist_user (dict): Playlist dictionary created 
         - name_song (dict): Name of the song 
         - name_artist (dict): Artist's name 
-        - uri_spotify (dict): spotify uri 
+        - uri_spotify (dict): Spotify uri 
     """
     tracks=playlist["tracks"]
     playlist_name=playlist["playlist_name"]
@@ -79,7 +79,7 @@ def extract_dict(playlist):
 
 def overview_song(artist_n,song_n):
     """ Prints only 5 songs from the playlist 
-    - connected to overview_logic function -
+    - Connected to overview_logic function -
 
     Args:
         artist_n (str): Name of the artist
@@ -110,7 +110,7 @@ def overview_logic(songs,name_playlist,dict_setlist):
             overview_song(item["track_name"],item["artist"])
              
         start += batch_size
-
+        #If they aren't more songs 
         if start >= len(songs):
             print("No more songs.")
             break

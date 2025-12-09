@@ -10,7 +10,8 @@ def wrap_songs(uri_playlist,name_user):
     and function for adding songs to a specific playlist 
 
     Args:
-        uri_playlist (str): uri's playlist
+        uri_playlist (str): Uri's playlist
+        name_user(str): Name's user
     """
     while True:
         sp,_,user_name=current_playlist()
@@ -22,10 +23,10 @@ def wrap_songs(uri_playlist,name_user):
                 stop=go_back()
                 if stop=="y":
                     break
-                else:
-                    continue
+            else:
+                print(" - You can't modify public playlists -")
+                break
         else:
-            print(" You can't modify a playlist from another user :(")
             break
 
             
