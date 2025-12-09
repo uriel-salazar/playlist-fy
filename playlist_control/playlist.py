@@ -1,7 +1,7 @@
 from wrap_playlist.playlist_function import caller_playlist
 from validate.verify_text import verify_number
 from add_songs.add_functions import wrap_songs
-from eliminate_playlist.erase import wipe_out
+
 from change_playlist.change import change_playlist
 import time
 
@@ -11,6 +11,8 @@ def menu_playlist():
     If user already chose a playlist, can select another option. 
     Otherwise, is going to ask for select a playlist.
     """
+    
+    # Predetermined values
     value_playlist=None
     playlist_picked=None
     
@@ -20,7 +22,7 @@ def menu_playlist():
         print("2. Add songs to your playlist ✍️ ")
         print("3. Change Playlist 🔁 ")
         print("4. Exit 🔚")
-        option=verify_number("Select an option (1 - 5) :")
+        option=verify_number("Select an option (1 - 4) :")
         
         if option==1:
             if playlist_picked==True:
@@ -28,7 +30,7 @@ def menu_playlist():
                         - select option 4 (Change playlist) ⚠️ -
                       """)
             else:
-                #calls function for playlist selection  
+                #Calls function for playlist selection  
                 value_playlist,playlist_picked,playlist_n=caller_playlist()
                 if value_playlist is None:
                     playlist_picked=False
@@ -38,8 +40,8 @@ def menu_playlist():
     
         elif option==2:
             if playlist_picked:
-                wrap_songs(value_playlist,playlist_n) 
-                   
+                #Function for adding songs : 
+                wrap_songs(value_playlist,playlist_n)       
             else:
                 print("First, you must enter your playlist.")
     
@@ -54,6 +56,7 @@ def menu_playlist():
             else:
                 print(" - Select a playlist first -")
         elif option==4:
+            #breaks and goes to the main menu 
             print("Exiting .. ")
             time.sleep(3)
             break

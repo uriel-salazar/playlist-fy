@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyOAuth
 from get_data.interact_user import print_playlist,extract_dict
 
 def get_spotify ():
-    """ Loads authorization variables,creates lists with scopes to read
+    """ Loads authorization variables,creates lists with scopes to read.
 
     Returns:
         spotipy.Spotify: Spotify Auth
@@ -84,6 +84,19 @@ def dict_playlist(scope,collections):
 
 
 def get_uri_playlist(playlist_data):
+    """ Calls functions for getting basic info from the user.
+    
+    (tracks/playlists info and uri)
+
+    Args:
+        playlist_data (_type_): _description_
+
+    Returns:
+        tracks(): _description_
+        playlist_name():
+        playlist_user():
+        uri_playlist():
+    """
     selected=print_playlist(playlist_data)
     tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist=extract_dict(selected)
     return tracks,playlist_name,playlist_user,uri_playlist

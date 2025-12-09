@@ -4,9 +4,9 @@ def add(playlist_uri,uri_track,sp):
     """ Adds new song to playlist 
 
     Args:
-        playlist_uri (str): _description_
-        uri_track (list): List of uri's songs 
-        sp (spotipy): _description_
+        - playlist_uri (str): Uri' playlist (Identifier for playlist)
+        - uri_track (list): List of uri's songs (Identifier)
+        - sp (spotipy): Spotify object 
     """
     sp.playlist_add_items(playlist_uri, uri_track)
     print("Song added!!")
@@ -21,7 +21,10 @@ def available_songs(sp):
         sp (spotipy): SpotifyOAuth 
 
     Returns:
-        results(spotipy): Raw dictionary of available tracks 
+        - results (spotipy): Raw dictionary of available tracks 
+        - track (dict): Songs dictionary
+        - track_list (list) List of song info (name /artist / uri) 
+        - song_chosen(): Song chosen by user
     """
     search=input("What song do you want to search?:")
     results = sp.search(q=search, type="track", limit=5)
@@ -77,7 +80,7 @@ def select_song(i):
         
     
 def chosen_song(song_data):
-    """ It asks the user if they want to add the chosen song.
+    """ It asks to the user if they want to add the chosen song.
 
     Args:
         song_data (dict): song selected by index 
@@ -95,8 +98,13 @@ def chosen_song(song_data):
 
         
 def go_back():
-        stop=valid_words(" Exit ? (y / n) : ",["y","n"])
-        return stop
+    """ Question to exit 
+
+    Returns:
+        stop (str): ( answer valid between y and n )
+    """
+    stop=valid_words(" Exit ? (y / n) : ",["y","n"])
+    return stop
     
             
         
