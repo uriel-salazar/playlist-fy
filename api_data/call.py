@@ -12,13 +12,12 @@ def get_spotify ():
         spotipy.Spotify: Spotify Auth (spotify object)
     """
     load_dotenv()
-    scopes=[
-        "playlist-read-private",
-        "playlist-modify-private",
-        "playlist-modify-public",
-    ]
-
-
+    scopes = [
+    "user-top-read",  
+    "playlist-read-private",
+    "playlist-modify-private",
+    "playlist-modify-public"
+]
     auth_manager = SpotifyPKCE(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
@@ -29,8 +28,6 @@ def get_spotify ():
     sp = spotipy.Spotify(auth_manager=auth_manager)
     return sp
 
-   
-   
 
 def log_in():
     """
@@ -42,14 +39,12 @@ def log_in():
     Raises:
         Login failed: Received error from OAuth server: Received error from auth server: access_denied
     
-    If you accept the terms, prints a message with their Spotify's username 
-    and returns Spotify object 
+    If you accept the terms, returns Spotify object 
     """
     
     sp = get_spotify()
     try:
         current_user = sp.current_user()
-        print(f"Logged in as: {current_user['display_name']}")
         return sp
     except Exception as e:
         print("Login failed:", e)
@@ -77,7 +72,7 @@ def current_playlist():
       
 def validate_user():
     """ 
-    Handles if spotify object is None,if it is, prints a message of returnin to main menu.
+    It handles if spotify object is None,if it is, prints a message of returning to main menu.
     Returns:
        sp (spotipy): Spotify object
     """
@@ -93,7 +88,7 @@ def validate_user():
 def dict_playlist(scope,collections):
     """ Creates a dict for extracting each data from each playlist
     
-    (tracks,artists,song's name,id)
+    (tracks,artists,song's name,ID)
 
     Args:
         scope (spotipy.Spotify) Get scopes 

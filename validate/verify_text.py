@@ -1,5 +1,5 @@
 def verify_number(answer):
-    """ Verify if is a a valid number
+    """ Verify if it's a valid number
     If not, is going to ask the question again 
 
     Args:
@@ -22,13 +22,13 @@ def verify_number(answer):
     
 def get_letters(prompt):
     """
-    Forces user to enter only letters and spaces
+    Forces user to enter only letters without spaces.
 
     Args:
         prompt (str): message shown to the user
 
     Returns:
-        str: validated text containing only letters and spaces
+        str: Validated text containing only letters and spaces
     """
     while True:
         text = input(prompt).strip()
@@ -40,8 +40,8 @@ def get_letters(prompt):
     
 def valid_words(answer,accepted_words):
     """
-    Accepts a word from a lisr of accepted words 
-    example : ["yes / "no" ] == valid words 
+    Accepts a word from a list of accepted words.
+    Example : ["yes / "no" ] == valid words 
 
     Args:
     
