@@ -2,7 +2,7 @@ from api_data.call import current_playlist
 def top_artist():
     """ Displays  User's top artist in a list (10)
     " Calls PKCE OAuth if it's required, if its, goes back to the menu 
-    Otherwise, get the current user'artists 
+    Otherwise, get the current user'artists.
     (long term top )
     """              
     sp,_,_=current_playlist()
