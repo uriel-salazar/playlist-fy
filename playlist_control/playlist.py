@@ -18,9 +18,8 @@ def menu_playlist():
         print("-- Your Spotify playlists   --")
         print("1. Select playlist 🎵 ")
         print("2. Add songs to your playlist ✍️ ")
-        print("3. Delete a playlist 🗑️")
-        print("4. Change Playlist 🔁 ")
-        print("5. Exit 🔚")
+        print("3. Change Playlist 🔁 ")
+        print("4. Exit 🔚")
         option=verify_number("Select an option (1 - 5) :")
         
         if option==1:
@@ -43,10 +42,8 @@ def menu_playlist():
                    
             else:
                 print("First, you must enter your playlist.")
+    
         elif option==3:
-                print("-- Delete Playlist -- ") 
-                wipe_out()
-        elif option==4:
             if playlist_picked:
                 want_change=change_playlist()
                 if want_change:
@@ -56,7 +53,7 @@ def menu_playlist():
                     print("Continuing with playlist selected ")
             else:
                 print(" - Select a playlist first -")
-        elif option==5:
+        elif option==4:
             print("Exiting .. ")
             time.sleep(3)
             break
