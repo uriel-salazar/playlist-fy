@@ -5,6 +5,7 @@ from eliminate_playlist.erase import wipe_out
 from change_playlist.change import change_playlist
 import time
 
+
 def menu_playlist():
     """ Menu specialized in playlists (delete/search/add)
     """
@@ -26,9 +27,13 @@ def menu_playlist():
                         - select option 4 (Change playlist) ⚠️ -
                       """)
             else:
-                #calls function for playlist selection 
+                #calls function for playlist selection  
                 value_playlist,playlist_picked,playlist_n=caller_playlist()
-                playlist_picked=True
+                if value_playlist is None:
+                    playlist_picked=False
+                    break
+                else:
+                    playlist_picked=True
     
         elif option==2:
             if playlist_picked:

@@ -1,15 +1,15 @@
-import webbrowser 
 import os
 import spotipy
 from dotenv import load_dotenv
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyPKCE
 from api_data.interact_user import print_playlist,extract_dict
 
+
 def get_spotify ():
-    """ It loads authorization variables and creates lists with scopes to read
+    """ Loads authorization variables and creates a list with the requited scopes to read
 
     Returns:
-        spotipy.Spotify: Spotify Auth
+        spotipy.Spotify: Spotify Auth (spotify object)
     """
     load_dotenv()
     scopes=[
@@ -17,59 +17,72 @@ def get_spotify ():
         "playlist-modify-private",
         "playlist-modify-public",
     ]
-   
-    auth_manager = SpotifyOAuth(
+
+
+    auth_manager = SpotifyPKCE(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
-        client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
         scope=" ".join(scopes),
-        show_dialog=True,
-        cache_path=".cache",
-      
-    ) 
-    return auth_manager
+        open_browser=True,
+        cache_path=".cache"
+    )
+    sp = spotipy.Spotify(auth_manager=auth_manager)
+    return sp
+
    
    
-def log_in(auth):
-    token_info = auth.get_cached_token()
-    if token_info:
-        return spotipy.Spotify(auth_manager=auth)
-    
 
-    # If no cached token, authenticate via browser
-    while True:
-            login_url = auth.get_authorize_url()
-            print("Opening Spotify login in your browser...")
-            webbrowser.open(login_url)
-            input("Press Enter after logging in...")
-        
-            token_info = auth.get_access_token()
-            if token_info:
-                print("Successful authentication!")
-                return spotipy.Spotify(auth_manager=auth)
-            else:
-                print("Login canceled")
-                return None
-
-            
+def log_in():
+    """
+    Calls to Spotify auth and handles if authorization is denied
     
+    If is denied, is going to return a print explaining the error :
+    
+    
+    """
+    
+    sp = get_spotify()
+    try:
+        current_user = sp.current_user()
+        print(f"Logged in as: {current_user['display_name']}")
+        return sp
+    except Exception as e:
+        print("Login failed:", e)
+        return None
+
+
+
 def current_playlist(): 
     """  Gets the current user's available Spotify playlists.
-
+    if the user cancels pkce auth, returns None
+    
     Returns:
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
-    auth_manager=get_spotify()
-    sp=log_in(auth_manager)
-    while sp is None:
-            print("Error at accepting spotify terms, please try again..")
-            log_in(auth_manager)
-            
-    user=sp.current_user()
-    playlists = sp.current_user_playlists() 
-    user_name=user["display_name"]
-    return sp,playlists,user_name
+    sp=validate_user()
+    if sp is None:
+        return None,None,None
+    else:
+        user=sp.current_user()
+        playlists = sp.current_user_playlists() 
+        user_name=user["display_name"]
+        return sp,playlists,user_name
+      
+def validate_user():
+    """ 
+
+    Returns:
+        _type_: _description_
+    """
+   
+    while True:
+        sp=log_in()
+        if sp is None:
+            print("login cancelled, going back to menu ")
+            return None
+        return sp
+    
 
 def dict_playlist(scope,collections):
     """ Creates a dict for extracting each data from each playlist
