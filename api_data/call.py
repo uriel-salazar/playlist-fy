@@ -1,4 +1,3 @@
-import webbrowser 
 import os
 import spotipy
 from dotenv import load_dotenv
@@ -7,10 +6,10 @@ from api_data.interact_user import print_playlist,extract_dict
 
 
 def get_spotify ():
-    """ It loads authorization variables and creates lists with scopes to read
+    """ Loads authorization variables and creates a list with the requited scopes to read
 
     Returns:
-        spotipy.Spotify: Spotify Auth
+        spotipy.Spotify: Spotify Auth (spotify object)
     """
     load_dotenv()
     scopes=[
@@ -18,12 +17,14 @@ def get_spotify ():
         "playlist-modify-private",
         "playlist-modify-public",
     ]
-   
+
+
     auth_manager = SpotifyPKCE(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
         scope=" ".join(scopes),
-        open_browser=True,   
+        open_browser=True,
+        cache_path=".cache"
     )
     sp = spotipy.Spotify(auth_manager=auth_manager)
     return sp
@@ -32,6 +33,14 @@ def get_spotify ():
    
 
 def log_in():
+    """
+    Calls to Spotify auth and handles if authorization is denied
+    
+    If is denied, is going to return a print explaining the error :
+    
+    
+    """
+    
     sp = get_spotify()
     try:
         current_user = sp.current_user()
@@ -45,7 +54,8 @@ def log_in():
 
 def current_playlist(): 
     """  Gets the current user's available Spotify playlists.
-
+    if the user cancels pkce auth, returns None
+    
     Returns:
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
@@ -60,13 +70,17 @@ def current_playlist():
         return sp,playlists,user_name
       
 def validate_user():
+    """ 
+
+    Returns:
+        _type_: _description_
+    """
+   
     while True:
-        get_spotify()
         sp=log_in()
-        if sp==None:
-            return
-        else:
-            pass
+        if sp is None:
+            print("login cancelled, going back to menu ")
+            return None
         return sp
     
 
