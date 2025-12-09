@@ -84,7 +84,7 @@ def chosen_song(song_data):
 
     Returns:
      change_song (str): ("yes or no answer ")
-     uri_song (str): Song's uri 
+     uri_song (str): Song's uri (identifier for songs)
     """
     uri_song=(song_data["uri"])
     uri_song=[uri_song]

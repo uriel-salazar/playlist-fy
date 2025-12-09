@@ -7,7 +7,9 @@ import time
 
 
 def menu_playlist():
-    """ Menu specialized in playlists (delete/search/add)
+    """ Menu foucused on playlists (delete/search/add)
+    If user already chose a playlist, can select another option. 
+    Otherwise, is going to ask for select a playlist.
     """
     value_playlist=None
     playlist_picked=None
@@ -45,18 +47,21 @@ def menu_playlist():
                 print("-- Delete Playlist -- ") 
                 wipe_out()
         elif option==4:
-             want_change=change_playlist()
-             if want_change:
-                 playlist_picked=False
-                 value_playlist,playlist_picked,playlist_n=caller_playlist()
-             else:
-                 print("Continuing with playlist selected ")
+            if playlist_picked:
+                want_change=change_playlist()
+                if want_change:
+                    playlist_picked=False
+                    value_playlist,playlist_picked,playlist_n=caller_playlist()
+                else:
+                    print("Continuing with playlist selected ")
+            else:
+                print(" - Select a playlist first -")
         elif option==5:
             print("Exiting .. ")
             time.sleep(3)
             break
         else:
-            print("Please enter a valid number")
+            print("Please enter a valid number 🔢")
         
         
             

@@ -4,13 +4,13 @@ from api_data.interact_user import overview_logic
 
 def caller_playlist():
     """
-    Calls functions for knowing the playlist selected.
-    If the user doesn't choose any playlist, it will ask if they want another one.
+    Calls functions for playlist selected.
+    If user doesn't choose any playlist, it will ask if they want to choose another one.
 
     Returns:
         value_playlist (str): playlist URI
         playlist_picked (bool)
-        playlist_n (str): owner name
+        playlist_n (str): owner of the playlist name
     """
 
     sp, playlists,user_name = current_playlist()
