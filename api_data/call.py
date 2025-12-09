@@ -135,9 +135,12 @@ def get_uri_playlist(playlist_data):
     """
     Docstring for get_uri_playlist
     
-    :param playlist_data: Description
+    Returns :
+    
     """
+    #Prints playlist selected 
     selected=print_playlist(playlist_data)
+    #Creates a dict for the playlist
     tracks,playlist_name,playlist_user,uri_playlist,name_owner=extract_dict(selected)
     return tracks,playlist_name,playlist_user,uri_playlist,name_owner
 
