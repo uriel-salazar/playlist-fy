@@ -43,14 +43,12 @@ def log_in():
     Raises:
         Login failed: Received error from OAuth server: Received error from auth server: access_denied
     
-    If you accept the terms, prints a message with their Spotify's username 
-    and returns Spotify object 
+    If you accept the terms, returns Spotify object 
     """
     
     sp = get_spotify()
     try:
         current_user = sp.current_user()
-        print(f"Logged in as: {current_user['display_name']}")
         return sp
     except Exception as e:
         print("Login failed:", e)

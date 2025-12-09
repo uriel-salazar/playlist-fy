@@ -7,7 +7,7 @@ import time
 
 
 def menu_playlist():
-    """ Menu foucused on playlists (delete/search/add)
+    """ Menu focused on playlists (search / add /delete /change)
     If user already chose a playlist, can select another option. 
     Otherwise, is going to ask for select a playlist.
     """

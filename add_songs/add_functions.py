@@ -22,10 +22,7 @@ def wrap_songs(uri_playlist,name_user):
                 stop=go_back()
                 if stop=="y":
                     break
-                else:
-                    continue
         else:
-            print(" You can't modify a playlist from another user :(")
             break
 
             
