@@ -34,11 +34,16 @@ def get_spotify ():
 
 def log_in():
     """
-    Calls to Spotify auth and handles if authorization is denied
+    Calls to Spotify Auth and handles it  if authorization is denied.
     
-    If is denied, is going to return a print explaining the error :
+    If is denied, is going to return the exception explaining the error then
+    at the end returns None.
     
+    Raises:
+        Login failed: Received error from OAuth server: Received error from auth server: access_denied
     
+    If you accept the terms, prints a message with their Spotify's username 
+    and returns Spotify object 
     """
     
     sp = get_spotify()
@@ -53,12 +58,13 @@ def log_in():
 
 
 def current_playlist(): 
-    """  Gets the current user's available Spotify playlists.
-    if the user cancels pkce auth, returns None
+    """  Get user's playlists 
+    If user cancels pkce auth, returns None.
     
     Returns:
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
+        - user_name (str): Spotify username 
     """
     sp=validate_user()
     if sp is None:
@@ -71,15 +77,15 @@ def current_playlist():
       
 def validate_user():
     """ 
-
+    Handles if spotify object is None,if it is, prints a message of returnin to main menu.
     Returns:
-        _type_: _description_
+       sp (spotipy): Spotify object
     """
    
     while True:
         sp=log_in()
         if sp is None:
-            print("login cancelled, going back to menu ")
+            print("⚠️ Login cancelled, going back to menu ")
             return None
         return sp
     
