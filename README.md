@@ -25,6 +25,20 @@ https://github.com/uriel-salazar/playlist-fy
 ```bash
   pip install -r requirements.txt
 ```
+*3*. **Configuration for PKCE**
+(Create a .env file with this information)
+```bash
+SPOTIPY_CLIENT_ID=your_client_id_here
+SPOTIPY_REDIRECT_URI=http://localhost:8080/callback
+```
+*4* **Running**
+```bash
+  python playlist_fy.py
+```
+## Overview *Screenshots*
+
+
+
 
 
 
