@@ -88,9 +88,9 @@ def overview_song(artist_n,song_n):
     print(f'Artist: {artist_n}, Song: {song_n}')
         
 def overview_logic(songs,name_playlist,dict_setlist):
-    """ Prints 5 songs from the playlist selected (logic
-    If user want to see more songs : user has to enter (y or n)
-    If not,is going to ask to user if this is the playlist to work on
+    """ Prints 5 songs from the playlist selected 
+    If user wants to see more songs, user has to enter (y or n)
+    If not, it is going to ask to user if this is the playlist to work on
 
     Args:
         - songs (dict)): Playlist's songs 
@@ -98,18 +98,21 @@ def overview_logic(songs,name_playlist,dict_setlist):
         - dict_setlist (dict): Dictionary with playlist selected
 
     Returns:
-        dict_setlist :(dict) : Dictionary with playlist selected 
+        dict_setlist (dict) : Dictionary with playlist selected 
     """
     batch_size = 5 
     start = 0
+    
     print(f" --- Playlist : {name_playlist}🎵 ---")
     
     while start < len(songs):
+        
         end = start + batch_size
         for item in songs[start:end]:
             overview_song(item["track_name"],item["artist"])
              
         start += batch_size
+        
         #If they aren't more songs 
         if start >= len(songs):
             print("No more songs.")
@@ -121,6 +124,7 @@ def overview_logic(songs,name_playlist,dict_setlist):
 
     question = valid_words("Are you going to use this playlist? (y/n):",["y","n"])
     if question == "y":
+        
         return dict_setlist, question
     else:
         return dict_setlist, None,

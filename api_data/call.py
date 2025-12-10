@@ -47,6 +47,7 @@ def log_in():
         current_user = sp.current_user()
         return sp
     except Exception as e:
+        
         print("Login failed:", e)
         return None
 
@@ -63,6 +64,7 @@ def current_playlist():
     """
     sp=validate_user()
     if sp is None:
+        
         return None,None,None
     else:
         user=sp.current_user()
@@ -128,10 +130,19 @@ def dict_playlist(scope,collections):
 
 def get_uri_playlist(playlist_data):
     """
-    Docstring for get_uri_playlist
-    
+    Displays a menu for picking a playlist and a creates a menu for the playlist selected 
     Returns :
-    
+        tracks (dict): Information of tracks
+        
+        playlist_name (str): Name of the playlist 
+
+        playlist_user(dict): Dict of playlist 
+        
+        uri_playlist(str): Uri playlist (identifier)
+        
+        name_owner(str): Spotify user ID
+        
+        
     """
     #Prints playlist selected 
     selected=print_playlist(playlist_data)

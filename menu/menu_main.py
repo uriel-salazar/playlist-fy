@@ -5,6 +5,7 @@ def head_playlistfy():
     """ MAIN MENU
     """
     while True:
+        
         print("--- PLAYLIST - FY ----")
         print("1. Search and modify songs from your playlists")
         print("2. Your top")

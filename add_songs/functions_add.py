@@ -1,6 +1,7 @@
 
 from validate.verify_text import valid_words
 def add(playlist_uri,uri_track,sp):
+    
     """ Adds new song to playlist 
 
     Args:
@@ -14,6 +15,7 @@ def add(playlist_uri,uri_track,sp):
 
 
 def available_songs(sp):
+    
     """ Gets available songs from search 
     Creates a dict from the available songs (name of the song,artist and uri)
 
@@ -24,7 +26,7 @@ def available_songs(sp):
         - results (spotipy): Raw dictionary of available tracks 
         - track (dict): Songs dictionary
         - track_list (list) List of song info (name /artist / uri) 
-        - song_chosen(): Song chosen by user
+        - song_chosen (str): Song chosen by user
     """
     search=input("What song do you want to search?:")
     results = sp.search(q=search, type="track", limit=5)
@@ -33,6 +35,7 @@ def available_songs(sp):
     track_list=[]
     #loops for each song founded 
     for index,track in enumerate(items,start=1):
+        
         print(f' {index} {track["name"]}  Artist : {track["artists"][0]["name"]}')
         track_list.append({
             "name":track["name"],
@@ -46,13 +49,13 @@ def available_songs(sp):
 
 
 def select_song(i):
-    """ Prints the available songs and validation input 
+    """ Displays available songs (max = 5) and validation input 
 
     Args:
-        i (_type_): _description_
+        i (dict): Available songs  from the search 
 
     Returns:
-        song_chosen (_type_ ): _description_
+        song_chosen (dict): Dict for chosen song ( name /artist /name / uri )
     """
     while True:
         
@@ -80,7 +83,7 @@ def select_song(i):
         
     
 def chosen_song(song_data):
-    """ It asks to the user if they want to add the chosen song.
+    """ It asks to user if they want to add that chosen song.
 
     Args:
         song_data (dict): song selected by index 
@@ -91,6 +94,7 @@ def chosen_song(song_data):
     """
     uri_song=(song_data["uri"])
     uri_song=[uri_song]
+    
     print(f" You chose - {song_data['name']} -  by  {song_data['artist']}")
     change_song=input(" Add song ? (y/n) :")
     return change_song,uri_song
