@@ -7,7 +7,7 @@ def verify_number(answer):
 
 
     Returns:
-        int:   User's input validated 
+        int:  User's input validated 
     """
     while True:
         user_input = input(answer).strip()  
@@ -30,6 +30,7 @@ def get_letters(prompt):
     Returns:
         str: Validated text containing only letters and spaces
     """
+    
     while True:
         text = input(prompt).strip()
         
@@ -57,6 +58,7 @@ def valid_words(answer,accepted_words):
     
     while True:
         option=input(answer).strip().lower()
+        
         if option in accepted_words:
             return option
         else:

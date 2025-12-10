@@ -7,13 +7,14 @@ import time
 
 
 def menu_playlist():
-    """ Menu focused on playlists (search / add /delete /change)
+    """ Menu focused on playlists (search / add /change)
     If user already chose a playlist, can select another option. 
     Otherwise, is going to ask for select a playlist.
     """
     
     # Predetermined values
     value_playlist=None
+    
     playlist_picked=None
     
     while True:
@@ -25,6 +26,8 @@ def menu_playlist():
         option=verify_number("Select an option (1 - 4) :")
         
         if option==1:
+            
+            
             if playlist_picked==True:
                 print("""⚠️ If you want change of playlist, 
                         - select option 4 (Change playlist) ⚠️ -
@@ -39,6 +42,7 @@ def menu_playlist():
                     playlist_picked=True
     
         elif option==2:
+            
             if playlist_picked:
                 #Function for adding songs : 
                 wrap_songs(value_playlist,playlist_n)       
@@ -46,8 +50,10 @@ def menu_playlist():
                 print("First, you must enter your playlist.")
     
         elif option==3:
+            
             if playlist_picked:
                 want_change=change_playlist()
+                
                 if want_change:
                     playlist_picked=False
                     value_playlist,playlist_picked,playlist_n=caller_playlist()
@@ -56,6 +62,7 @@ def menu_playlist():
             else:
                 print(" - Select a playlist first -")
         elif option==4:
+            
             #breaks and goes to the main menu 
             print("Exiting .. ")
             time.sleep(3)

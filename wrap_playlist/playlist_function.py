@@ -20,6 +20,8 @@ def caller_playlist():
     playlist_data = dict_playlist(sp, playlists)
 
     while True:
+        #Playlist chosen flow 
+        
         tracks, playlist_name, playlist_user, uri_playlist, name_owner = get_uri_playlist(playlist_data)
         dict_sectlist, question = overview_logic(tracks, playlist_name, playlist_user)
 
@@ -32,7 +34,7 @@ def caller_playlist():
             return value_playlist, playlist_picked, playlist_n
 
         again = input("Search another playlist? (y / n): ")
-
+        
         if again.lower() != "y":
             # if user doesn't want to search more playlists
             playlist_picked = False

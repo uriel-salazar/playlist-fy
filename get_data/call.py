@@ -92,13 +92,15 @@ def get_uri_playlist(playlist_data):
         playlist_data (_type_): _description_
 
     Returns:
-        tracks(): _description_
-        playlist_name():
-        playlist_user():
-        uri_playlist():
+        tracks(dict): Dictionary of songs 
+        playlist_name(str): Name of playlist 
+        playlist_user(dict): Dict of playlist 
+        uri_playlist(str): Uri playlist 
     """
     selected=print_playlist(playlist_data)
+    
     tracks,playlist_name,playlist_user,name_song,name_artist,uri_playlist=extract_dict(selected)
+    
     return tracks,playlist_name,playlist_user,uri_playlist
 
 
