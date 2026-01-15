@@ -1,4 +1,5 @@
 import os
+import requests
 import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
@@ -23,9 +24,9 @@ def get_spotify ():
             client_id=os.getenv("SPOTIPY_CLIENT_ID"),
             client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
             redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
-            scope=" ".join(scopes)
-            
-        )
+            scope=" ".join(scopes)   
+        ),
+        requests_timeout=3
     )
     
     
@@ -36,8 +37,12 @@ def current_playlist():
        - sp (spotipy.Spotify): The authenticated Spotify client object.
         - playlists (dict): The dictionary of playlists returned by Spotify.
     """
-    sp=get_spotify () #spotify client object 
-    playlists = sp.current_user_playlists()
+    sp=get_spotify()
+    try:
+        playlists=sp.current_user_playlists()
+    except requests.exceptions.Timeout:
+        print("Timeout Error! 😴")
+        
     return sp,playlists
             
     
